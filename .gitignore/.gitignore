@@ -1,0 +1,4 @@
+/builds/
+/bin/
+/library
+!readme.md
