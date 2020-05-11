@@ -7,7 +7,9 @@ public class BoardManager : MonoBehaviour
     public int boardRows, boardColumns;
     public int minRoomSize, maxRoomSize;
     public GameObject tile;
+    public GameObject wall;
     private GameObject[,] positionFloor;
+   
 
   public class Tree {
     public Tree left, right;
@@ -17,6 +19,7 @@ public class BoardManager : MonoBehaviour
 
     private static int idCounter = 0;
 
+    //Binärer Baum als Datenstruktur, welcher eine id, sowie eine Fläche besitzt
     public Tree(Rect rectang) {
       rect = rectang;
       id = idCounter;
@@ -36,24 +39,45 @@ public class BoardManager : MonoBehaviour
         int roomX = (int)Random.Range (1, rect.width - roomWidth - 1);
         int roomY = (int)Random.Range (1, rect.height - roomHeight - 1);
 
-        // room position will be absolute in the board, not relative to the sub-dungeon
+        //Erstellt Raum innerhalb der Fläche eines Knotens
         room = new Rect (rect.x + roomX, rect.y + roomY, roomWidth, roomHeight);
         Debug.Log ("Raum erstellt " + room + " in Fläche " + id + " " + rect);
       }
     }
 
+    //Falls Knoten = Blatt
     public bool IsLeaf() {
       return left == null && right == null;
     }
+
+    public Rect GetRoom() {
+      if (IsLeaf()) {
+        return room;
+      }
+      if (left != null) {
+        Rect leftRoom = left.GetRoom ();
+        if (leftRoom.x != -1) {
+          return leftRoom;
+        }
+      }
+      if (right != null) {
+        Rect rightRoom = right.GetRoom ();
+        if (rightRoom.x != -1) {
+          return rightRoom;
+        }
+      }
+       return new Rect (-1, -1, 0, 0);
+      }
+      
 
     public bool Split(int minRoomSize, int maxRoomSize) {
       if (!IsLeaf()) {
          return false;
       }
 
-      // choose a vertical or horizontal split depending on the proportions
-      // i.e. if too wide split vertically, or too long horizontally,
-      // or if nearly square choose vertical or horizontal at random
+      //Je nachdem wie das Verhältnis von Länge zu Breite ist, wird die Fläche entweder horizontal
+      //oder vertikal geteilt (Dies geschieht wenn z.B x*länge>breite ist)
+      //falls das Verhältnis nahe quadratisch ist, wird zufällig geteilt
       bool splitHorizontal;
       if (rect.width / rect.height >= 1.25) {
         splitHorizontal = false;
@@ -64,13 +88,12 @@ public class BoardManager : MonoBehaviour
       }
 
       if (Mathf.Min(rect.height, rect.width) / 2 < minRoomSize) {
-        Debug.Log ("Sub-dungeon " + id + " will be a leaf");
+        Debug.Log ("Fläche " + id + " ist ein Blatt");
         return false;
       }
 
       if (splitHorizontal) {
-        // split so that the resulting sub-dungeons widths are not too small
-        // (since we are splitting horizontally)
+        //Aufteilung unter Beachtung der minimalen Raumgröße
         int split = Random.Range (minRoomSize, (int)(rect.width - minRoomSize));
 
         left = new Tree (new Rect (rect.x, rect.y, rect.width, split));
@@ -92,7 +115,7 @@ public class BoardManager : MonoBehaviour
   public void CreateTree(Tree tree) {
     Debug.Log ("Teile Fläche " + tree.id + ": " + tree.rect);
     if (tree.IsLeaf()) {
-      // if the sub-dungeon is too large
+      // Falls die Fläche zu groß ist (Maximale Raumgröße überschritten)
       if (tree.rect.width > maxRoomSize
         || tree.rect.height > maxRoomSize
         || Random.Range(0.0f,1.0f) > 0.25) {
@@ -109,6 +132,7 @@ public class BoardManager : MonoBehaviour
     }
   }
 
+  //Zeichnet aus gegebenen GameObjects den Floor
   public void drawRoom(Tree tree)
   {
     if(tree==null)
@@ -129,13 +153,57 @@ public class BoardManager : MonoBehaviour
      drawRoom(tree.right);
 	}
   }
+   //BAUSTELLE: JEWEILS ANDERE SPRITES VERWENDEN 
+  public void drawWall(Tree tree)
+  {
+    if(tree==null)
+    {
+      return;
+	}
+    //Wände für jeden Raum
+    if(tree.IsLeaf()) {
+     for (int i = (int) tree.room.x - 1; i < tree.room.xMax + 1; i++ ) {
+      int j = (int) tree.room.y - 1;
+       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
+       newWall.transform.SetParent(transform);
+       positionFloor[i,j] = newWall;      
+	  }
+     for (int i = (int) tree.room.x - 1; i < tree.room.xMax + 1; i++ ) {
+      int j = (int) tree.room.yMax;
+       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
+       newWall.transform.SetParent(transform);
+       positionFloor[i,j] = newWall;      
+	 }
+     for (int j = (int) tree.room.y - 1; j < tree.room.yMax + 1; j++ ) {
+      int i = (int) tree.room.xMax;
+       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
+       newWall.transform.SetParent(transform);
+       positionFloor[i,j] = newWall;      
+	 }
+     for (int j = (int) tree.room.y - 1; j < tree.room.yMax + 1; j++ ) {
+      int i = (int) tree.room.x - 1;
+       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
+       newWall.transform.SetParent(transform);
+       positionFloor[i,j] = newWall;      
+	 }
+      
+	}
+    else {
+     drawWall(tree.left);
+     drawWall(tree.right);
+	}
+  }
 
+  //init
   void Start () {
     Tree root = new Tree (new Rect (0, 0, boardRows, boardColumns));
     CreateTree (root);
     root.CreateRoom();
-    positionFloor = new GameObject[boardRows, boardColumns];
+    positionFloor = new GameObject[boardRows, boardColumns]; 
     drawRoom(root);
+    drawWall(root);
+    
+    
   }
 
   }

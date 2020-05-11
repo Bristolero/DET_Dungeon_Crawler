@@ -48,3 +48,4 @@ MonoBehaviour:
   minRoomSize: 10
   maxRoomSize: 20
   tile: {fileID: 5416922319471385754, guid: 928ee3d80e77ec641a6d7be61f61778b, type: 3}
+  walls: {fileID: 3105088089470416641, guid: 1fac72b3a15dc5c469c9d0ace7612304, type: 3}
