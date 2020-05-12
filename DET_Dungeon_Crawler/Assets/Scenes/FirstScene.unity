@@ -239,6 +239,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3105088089470416641, guid: 1fac72b3a15dc5c469c9d0ace7612304,
         type: 3}
+    - target: {fileID: 1205991497529614639, guid: 7e0a209c5c01cb44cb27d0f036e94270,
+        type: 3}
+      propertyPath: minRoomSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205991497529614639, guid: 7e0a209c5c01cb44cb27d0f036e94270,
+        type: 3}
+      propertyPath: maxRoomSize
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0a209c5c01cb44cb27d0f036e94270, type: 3}
 --- !u!1 &1400923060
