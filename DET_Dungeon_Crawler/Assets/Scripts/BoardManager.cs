@@ -302,6 +302,56 @@ public class BoardManager : MonoBehaviour
     }
     }
 
+    void DrawConnectorWall(Tree tree) {
+    if(tree==null) {       
+      return;
+    }
+    DrawConnectorWall(tree.left);
+    DrawConnectorWall(tree.right);
+    
+    foreach (Rect connector in tree.connectors) {     
+      //Horizontale Wand links
+      for (int i = (int)connector.x - 1 ; i < connector.xMax + 1; i++) {
+          int j = (int) connector.y - 1;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      //Horizontale Wand rechts
+      for (int i = (int)connector.x - 1 ; i < connector.xMax + 1; i++) {
+          int j = (int) connector.yMax;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      //Vertikale Wand rechts
+      for (int j = (int)connector.y - 1; j < connector.yMax + 1; j++) {
+          int i =  (int) connector.xMax;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      //Vertikale Wand links
+      for (int j = (int)connector.y - 1; j < connector.yMax + 1; j++) {
+          int i =  (int) connector.x - 1;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      
+    }
+
+  }
+
+
    public bool isObjectHere(Vector3 targetPos)
     {
         GameObject[] allThings = GameObject.FindGameObjectsWithTag("Floor");
@@ -323,6 +373,7 @@ public class BoardManager : MonoBehaviour
     drawRoom(root);
     DrawConnectors(root);
     drawWall(root);
+    DrawConnectorWall(root);
     
     }
         
