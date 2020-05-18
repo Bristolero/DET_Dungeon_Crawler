@@ -9,6 +9,7 @@ public class BoardManager : MonoBehaviour
     public GameObject tile;
     public GameObject wall;
     public GameObject corridorTile;
+    public GameObject bugFixTile;
     private GameObject[,] positionFloor;
    
 
@@ -302,7 +303,8 @@ public class BoardManager : MonoBehaviour
     }
     }
 
-    void DrawConnectorWall(Tree tree) {
+
+  void DrawConnectorWall(Tree tree) {
     if(tree==null) {       
       return;
     }
@@ -378,6 +380,7 @@ public class BoardManager : MonoBehaviour
     }
         
   }
+
 
 
   
