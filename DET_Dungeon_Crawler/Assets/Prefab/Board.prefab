@@ -43,9 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57ecfa9eaa2adc4db88104af489e741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardRows: 100
-  boardColumns: 100
+  boardRows: 50
+  boardColumns: 50
   minRoomSize: 10
-  maxRoomSize: 20
+  maxRoomSize: 10
   tile: {fileID: 5416922319471385754, guid: 928ee3d80e77ec641a6d7be61f61778b, type: 3}
-  walls: {fileID: 3105088089470416641, guid: 1fac72b3a15dc5c469c9d0ace7612304, type: 3}
+  wall: {fileID: 3105088089470416641, guid: 1fac72b3a15dc5c469c9d0ace7612304, type: 3}
+  connectorTile: {fileID: 304949142679528136, guid: 47bc746738ba0844cbaf98e89cbbbead,
+    type: 3}

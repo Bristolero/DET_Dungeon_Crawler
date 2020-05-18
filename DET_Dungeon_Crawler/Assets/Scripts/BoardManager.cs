@@ -8,6 +8,7 @@ public class BoardManager : MonoBehaviour
     public int minRoomSize, maxRoomSize;
     public GameObject tile;
     public GameObject wall;
+    public GameObject corridorTile;
     private GameObject[,] positionFloor;
    
 
@@ -16,7 +17,8 @@ public class BoardManager : MonoBehaviour
     public Rect rect;
     public Rect room = new Rect(-1,-1, 0, 0); // i.e null
     public int id;
-
+    public List<Rect> connectors = new List<Rect>();
+    
     private static int idCounter = 0;
 
     //Binärer Baum als Datenstruktur, welcher eine id, sowie eine Fläche besitzt
@@ -26,13 +28,21 @@ public class BoardManager : MonoBehaviour
       idCounter++;
     }
 
-     public void CreateRoom() {
+    public void CreateRoom() {
       if (left != null) {
         left.CreateRoom ();
       }
       if (right != null) {
         right.CreateRoom ();
       }
+
+     
+      //DELETE IF NOT WORKING
+      if(right!=null && left !=null)
+      {
+        CreateConnectors(left, right);
+	  }
+
       if (IsLeaf()) {
         int roomWidth = (int)Random.Range (rect.width / 2, rect.width - 2);
         int roomHeight = (int)Random.Range (rect.height / 2, rect.height - 2);
@@ -110,6 +120,70 @@ public class BoardManager : MonoBehaviour
 
       return true;
     }
+
+
+
+    public void CreateConnectors(Tree left, Tree right) {
+      Rect leftRoom = left.GetRoom ();
+      Rect rightRoom = right.GetRoom (); 
+
+      Debug.Log("Creating corridor(s) between " + left.id + "(" + leftRoom + ") and " + right.id + " (" + rightRoom + ")");
+
+      // Jeder Gang startet in einem zufälligen Punkt eines Raumes
+      Vector2 leftPoint = new Vector2 ((int)Random.Range (leftRoom.x + 3, leftRoom.xMax - 3), (int)Random.Range (leftRoom.y + 3, leftRoom.yMax - 3));
+      Vector2 rightPoint = new Vector2 ((int)Random.Range (rightRoom.x + 3, rightRoom.xMax - 3), (int)Random.Range (rightRoom.y + 3, rightRoom.yMax - 3));
+      
+      // Punkt "leftPoint" soll sich im Koordinatensystem links von "rightPoint" befinden
+      if (leftPoint.x > rightPoint.x) {
+        Vector2 temp = leftPoint;
+        leftPoint = rightPoint;
+        rightPoint = temp;
+      }
+
+      int w = (int)(leftPoint.x - rightPoint.x);
+      int h = (int)(leftPoint.y - rightPoint.y);
+
+      Debug.Log ("leftPoint: " + leftPoint + ", rightPoint: " + rightPoint + ", w: " + w + ", h: " + h);
+
+      // falls die Punkte horizontal nicht auf einer Linie liegen
+      if (w != 0) {
+        // Zufällig auswählen, ob erst vertikal und dann horizontal den Gang erstellen oder anders herum 
+        if (Random.Range (0, 1) > 2) {
+          // Füge einen weiteren Gang nach rechts ein
+          connectors.Add (new Rect (leftPoint.x, leftPoint.y, Mathf.Abs (w) + 1, 1));
+
+          // Befindet sich der linke Punkt unter dem Rechten, dann geht der Weg nach oben, ansonsten nach unten
+          if (h < 0) {
+            connectors.Add (new Rect (rightPoint.x, leftPoint.y, 1, Mathf.Abs (h)));
+          } else {
+            connectors.Add (new Rect (rightPoint.x, leftPoint.y, 1, -Mathf.Abs (h)));
+          }
+        } else {
+          // Gehe nach oben oder unten
+          if (h < 0) {
+            connectors.Add (new Rect (leftPoint.x, leftPoint.y, 1, Mathf.Abs (h)));
+          } else {
+            connectors.Add (new Rect (leftPoint.x, rightPoint.y, 1, Mathf.Abs (h)));
+          }
+
+          // dann rechts
+          connectors.Add (new Rect (leftPoint.x, rightPoint.y, Mathf.Abs (w) + 1, 1));
+        }
+      } else {       
+        //Befinden sich die Punkte horizontal auf einer Linie, dann gehe hoch oder runter
+        if (h < 0) {
+          connectors.Add (new Rect ((int)leftPoint.x, (int)leftPoint.y, 1, Mathf.Abs (h)));
+        } else {
+          connectors.Add (new Rect ((int)rightPoint.x, (int)rightPoint.y, 1, Mathf.Abs (h)));
+        }
+      }
+
+      Debug.Log ("Corridors: ");
+      foreach (Rect corridor in connectors) {
+        Debug.Log ("corridor: " + corridor);
+      }
+    }
+
   }
 
   public void CreateTree(Tree tree) {
@@ -154,6 +228,7 @@ public class BoardManager : MonoBehaviour
 	}
   }
    //BAUSTELLE: JEWEILS ANDERE SPRITES VERWENDEN 
+
   public void drawWall(Tree tree)
   {
     if(tree==null)
@@ -163,28 +238,40 @@ public class BoardManager : MonoBehaviour
     //Wände für jeden Raum
     if(tree.IsLeaf()) {
      for (int i = (int) tree.room.x - 1; i < tree.room.xMax + 1; i++ ) {
-      int j = (int) tree.room.y - 1;
-       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
-       newWall.transform.SetParent(transform);
-       positionFloor[i,j] = newWall;      
-	  }
+       int j = (int) tree.room.y - 1;
+       Vector3 toAdd = new Vector3(i,j,0f);
+       if(isObjectHere(toAdd)) {
+         GameObject newWall = Instantiate (wall, toAdd, Quaternion.identity) as GameObject;
+         newWall.transform.SetParent(transform);
+         positionFloor[i,j] = newWall;      
+         }
+	 }
      for (int i = (int) tree.room.x - 1; i < tree.room.xMax + 1; i++ ) {
-      int j = (int) tree.room.yMax;
-       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
-       newWall.transform.SetParent(transform);
-       positionFloor[i,j] = newWall;      
+       int j = (int) tree.room.yMax;
+       Vector3 toAdd = new Vector3(i,j,0f);
+       if(isObjectHere(toAdd)) {
+         GameObject newWall = Instantiate (wall, toAdd, Quaternion.identity) as GameObject;
+         newWall.transform.SetParent(transform);
+         positionFloor[i,j] = newWall;      
+         }      
 	 }
      for (int j = (int) tree.room.y - 1; j < tree.room.yMax + 1; j++ ) {
-      int i = (int) tree.room.xMax;
-       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
-       newWall.transform.SetParent(transform);
-       positionFloor[i,j] = newWall;      
+       int i = (int) tree.room.xMax;
+       Vector3 toAdd = new Vector3(i,j,0f);
+       if(isObjectHere(toAdd)) {
+         GameObject newWall = Instantiate (wall, toAdd, Quaternion.identity) as GameObject;
+         newWall.transform.SetParent(transform);
+         positionFloor[i,j] = newWall;      
+         }      
 	 }
      for (int j = (int) tree.room.y - 1; j < tree.room.yMax + 1; j++ ) {
-      int i = (int) tree.room.x - 1;
-       GameObject newWall = Instantiate (wall, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
-       newWall.transform.SetParent(transform);
-       positionFloor[i,j] = newWall;      
+       int i = (int) tree.room.x - 1;
+       Vector3 toAdd = new Vector3(i,j,0f);
+       if(isObjectHere(toAdd)) {
+         GameObject newWall = Instantiate (wall, toAdd, Quaternion.identity) as GameObject;
+         newWall.transform.SetParent(transform);
+         positionFloor[i,j] = newWall;      
+         }     
 	 }
       
 	}
@@ -194,16 +281,52 @@ public class BoardManager : MonoBehaviour
 	}
   }
 
+  void DrawConnectors(Tree tree) {
+    if (tree == null) {
+      return;
+    }
+
+    DrawConnectors (tree.left);
+    DrawConnectors (tree.right);
+
+    foreach (Rect connector in tree.connectors) {
+      for (int i = (int)connector.x; i < connector.xMax; i++) {
+        for (int j = (int)connector.y; j < connector.yMax; j++) {
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (corridorTile, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+        }
+      }
+    }
+    }
+
+   public bool isObjectHere(Vector3 targetPos)
+    {
+        GameObject[] allThings = GameObject.FindGameObjectsWithTag("Floor");
+        foreach(GameObject current in allThings)
+     {
+           if(current.transform.position == targetPos)
+           return false;
+     }
+     return true;
+}
+
   //init
   void Start () {
+    Debug.Log( boardColumns );
     Tree root = new Tree (new Rect (0, 0, boardRows, boardColumns));
     CreateTree (root);
     root.CreateRoom();
-    positionFloor = new GameObject[boardRows, boardColumns]; 
+    positionFloor = new GameObject[boardRows, boardColumns];     
     drawRoom(root);
+    DrawConnectors(root);
     drawWall(root);
     
-    
+    }
+        
   }
 
-  }
+
+  
