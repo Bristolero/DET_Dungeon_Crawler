@@ -8,6 +8,11 @@ public class BoardManager : MonoBehaviour
     public int minRoomSize, maxRoomSize;
     public GameObject tile;
     public GameObject wall;
+<<<<<<< Updated upstream
+=======
+    public GameObject corridorTile;
+    public GameObject bugFixTile;
+>>>>>>> Stashed changes
     private GameObject[,] positionFloor;
    
 
@@ -194,6 +199,91 @@ public class BoardManager : MonoBehaviour
 	}
   }
 
+<<<<<<< Updated upstream
+=======
+  void DrawConnectors(Tree tree) {
+    if (tree == null) {
+      return;
+    }
+
+    DrawConnectors (tree.left);
+    DrawConnectors (tree.right);
+
+    foreach (Rect connector in tree.connectors) {
+      for (int i = (int)connector.x; i < connector.xMax; i++) {
+        for (int j = (int)connector.y; j < connector.yMax; j++) {
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (corridorTile, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+        }
+      }
+    }
+  }
+
+  void DrawConnectorWall(Tree tree) {
+    if(tree==null) {       
+      return;
+    }
+    DrawConnectorWall(tree.left);
+    DrawConnectorWall(tree.right);
+    
+    foreach (Rect connector in tree.connectors) {     
+      //Horizontale Wand links
+      for (int i = (int)connector.x - 1 ; i < connector.xMax + 1; i++) {
+          int j = (int) connector.y - 1;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      //Horizontale Wand rechts
+      for (int i = (int)connector.x - 1 ; i < connector.xMax + 1; i++) {
+          int j = (int) connector.yMax;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      //Vertikale Wand rechts
+      for (int j = (int)connector.y - 1; j < connector.yMax + 1; j++) {
+          int i =  (int) connector.xMax;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      //Vertikale Wand links
+      for (int j = (int)connector.y - 1; j < connector.yMax + 1; j++) {
+          int i =  (int) connector.x - 1;
+          if (positionFloor[i,j] == null) {
+            GameObject instance = Instantiate (wall, new Vector3 (i, j, 0f), Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor [i, j] = instance;
+          }
+      }
+      
+    }
+
+  }
+  
+
+   public bool isObjectHere(Vector3 targetPos)
+    {
+        GameObject[] allThings = GameObject.FindGameObjectsWithTag("Floor");
+        foreach(GameObject current in allThings)
+     {
+           if(current.transform.position == targetPos)
+           return false;
+     }
+     return true;
+}
+
+>>>>>>> Stashed changes
   //init
   void Start () {
     Tree root = new Tree (new Rect (0, 0, boardRows, boardColumns));
@@ -202,8 +292,18 @@ public class BoardManager : MonoBehaviour
     positionFloor = new GameObject[boardRows, boardColumns]; 
     drawRoom(root);
     drawWall(root);
+<<<<<<< Updated upstream
     
     
   }
 
   }
+=======
+    DrawConnectorWall(root);
+    }
+        
+  }
+  
+
+  
+>>>>>>> Stashed changes

@@ -270,6 +270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 279583664953964604, guid: 13f5659eecbf0854ca241c8303485762,
         type: 3}
+<<<<<<< Updated upstream
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
@@ -313,6 +314,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+=======
+    - target: {fileID: 1205991497529614639, guid: 7e0a209c5c01cb44cb27d0f036e94270,
+        type: 3}
+      propertyPath: bugFixTile
+      value: 
+      objectReference: {fileID: 4011404841777454894, guid: a216edd360d9e914891977dfc892e316,
+        type: 3}
+>>>>>>> Stashed changes
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f5659eecbf0854ca241c8303485762, type: 3}
 --- !u!1 &1400923060
