@@ -227,7 +227,7 @@ Transform:
   - {fileID: 1459565857}
   - {fileID: 307848786}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &30857732
 PrefabInstance:
@@ -295,6 +295,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034514542891797471, guid: 13f5659eecbf0854ca241c8303485762,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034514542891797471, guid: 13f5659eecbf0854ca241c8303485762,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f5659eecbf0854ca241c8303485762, type: 3}
@@ -4045,7 +4055,7 @@ PrefabInstance:
     - target: {fileID: 6345882776200214428, guid: 8e691bac6a458de4a94d4d116c898788,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6345882776200214428, guid: 8e691bac6a458de4a94d4d116c898788,
         type: 3}
@@ -11237,7 +11247,7 @@ Transform:
   - {fileID: 1825736779}
   - {fileID: 423177332}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1969560725
 PrefabInstance:
