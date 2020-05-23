@@ -208,17 +208,17 @@ PrefabInstance:
     - target: {fileID: 1205991497529614639, guid: 7e0a209c5c01cb44cb27d0f036e94270,
         type: 3}
       propertyPath: maxRoomSize
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1205991497529614639, guid: 7e0a209c5c01cb44cb27d0f036e94270,
         type: 3}
       propertyPath: boardColumns
-      value: 75
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1205991497529614639, guid: 7e0a209c5c01cb44cb27d0f036e94270,
         type: 3}
       propertyPath: boardRows
-      value: 75
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1205991497529614639, guid: 7e0a209c5c01cb44cb27d0f036e94270,
         type: 3}
