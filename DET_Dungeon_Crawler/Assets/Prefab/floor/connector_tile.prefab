@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6208465318308664043}
   - component: {fileID: 6208465318308664044}
   m_Layer: 0
-  m_Name: floor_5
+  m_Name: connector_tile
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

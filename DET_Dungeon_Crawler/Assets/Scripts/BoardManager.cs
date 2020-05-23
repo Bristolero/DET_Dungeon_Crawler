@@ -10,6 +10,7 @@ public class BoardManager : MonoBehaviour
     public GameObject wall;
     public GameObject corridorTile;
     public GameObject bugFixTile;
+    public GameObject player;
     private GameObject[,] positionFloor;
    
 
@@ -37,8 +38,7 @@ public class BoardManager : MonoBehaviour
         right.CreateRoom ();
       }
 
-     
-      //DELETE IF NOT WORKING
+      //Erstellt einen Gang zwischen dem Raum des linken und Raum des rechten Knotens      
       if(right!=null && left !=null)
       {
         CreateConnectors(left, right);
@@ -363,7 +363,29 @@ public class BoardManager : MonoBehaviour
            return false;
      }
      return true;
-}
+  }
+
+  public void SpawnPlayer()
+  {
+     Vector3 spawnPos = findRandomPointInRoom();
+     GameObject instance = Instantiate (player, spawnPos, Quaternion.identity) as GameObject;
+     instance.transform.SetParent (transform);
+     positionFloor[(int) spawnPos.x, (int) spawnPos.y] = instance;
+  }
+
+  public Vector3 findRandomPointInRoom()
+  {
+      System.Random rnd = new System.Random();
+      List<GameObject> floorList = new List<GameObject>();
+      floorList.AddRange(GameObject.FindGameObjectsWithTag("Floor"));
+      int randomIndex = rnd.Next(floorList.Count);
+      GameObject floorTile = floorList[randomIndex];
+      Vector3 position = floorTile.transform.position;
+       Debug.Log ("X: " + position.x + "Y: " + position.y + "Listengröße: " + floorList.Count);
+      return position;
+     
+  }
+  
 
   //init
   void Start () {
@@ -376,7 +398,7 @@ public class BoardManager : MonoBehaviour
     DrawConnectors(root);
     drawWall(root);
     DrawConnectorWall(root);
-    
+    SpawnPlayer();
     }
         
   }
