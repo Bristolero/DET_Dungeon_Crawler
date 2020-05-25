@@ -5,19 +5,42 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {  // Der Spieler bewegt sich mit einer Geschwindigkeit 3f  
     public float moveSpeed = 3f;
-    
-   //ein Rigidbody 2D component unter der Kontrolle vom physics engine
+    private Vector3 swordEulerAngles;
+    private float timeVal;
+
+    //ein Rigidbody 2D component unter der Kontrolle vom physics engine
     public Rigidbody2D rb;
-    
+    public GameObject swordPrefab;
+    //Die Position von attack ist vorne von dem player
+    private Transform attackPosition;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        rb= GetComponent<Rigidbody2D>();
+        attackPosition = transform.Find("Attack_pos");
+        rb = GetComponent<Rigidbody2D>();
+        swordPrefab.SetActive(true);
     }
 
     // Update is called once per frame
-
     void FixedUpdate()
+    {
+        Move();
+        //die Methode swordAttack wird aufgerufen 
+        swordAttack();
+    }
+    // Attack mit dem sword
+    private void swordAttack()
+    {  
+        //die methode swordAttack wird mit dem Key"Space" kontrollieren.
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            //die Position und Rotation von Attack ist abhängig von dem player.
+            Instantiate(swordPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + swordEulerAngles));
+        }
+    }
+    private void Move()
     {
         Vector3 vel = rb.velocity;
         //h ist die Bewegung der Spieler in horizontaler Richtung,-1 nach links,1 nach rechts.
@@ -34,11 +57,13 @@ public class Player : MonoBehaviour
         if (h < 0)
         {
             this.transform.eulerAngles = new Vector3(0, 180, 0);
+            swordEulerAngles = new Vector3(0, 0, 0);
         }
         //wenn der Spieler nach rechts bewegt, sein Kopf bleibt nach rechts 
         if (h > 0)
         {
             this.transform.eulerAngles = new Vector3(0, 0, 0);
+            swordEulerAngles = new Vector3(0, 0, 0);
         }
         if (h == 0)
         {
