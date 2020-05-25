@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4485778769917812399}
   - component: {fileID: 4485778769917812398}
   - component: {fileID: 4485778769917812397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_Priest
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

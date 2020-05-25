@@ -9,9 +9,15 @@ public class BoardManager : MonoBehaviour
     public GameObject tile;
     public GameObject wall;
     public GameObject corridorTile;
-    public GameObject bugFixTile;
     public GameObject player;
+    public GameObject[] enemies;
+    public GameObject[] items;
+    public GameObject exit;
+    public GameObject key;
+    public double spawnProhabilityEnemies;
+    public double spawnProhabilityItems;
     private GameObject[,] positionFloor;
+    private System.Random rnd = new System.Random();
    
 
   public class Tree {
@@ -353,18 +359,63 @@ public class BoardManager : MonoBehaviour
 
   }
 
-
+   //Checkt ob ein Connector oder FloorTile and gegebener Position ist
    public bool isObjectHere(Vector3 targetPos)
     {
         GameObject[] allThings = GameObject.FindGameObjectsWithTag("Floor");
+        GameObject[] otherThings = GameObject.FindGameObjectsWithTag("Connector");     
         foreach(GameObject current in allThings)
-     {
+        {
            if(current.transform.position == targetPos)
            return false;
-     }
+        }
+        foreach(GameObject current in otherThings)
+        {
+           if(current.transform.position == targetPos)
+           return false;
+        }
      return true;
   }
 
+  //Spawnt den Exit mit einer Distanz von boardRows/2 Felder vom Player
+  public void SpawnExit()
+  {
+     bool nearPlayer = true;
+     Vector3 playerPos = player.transform.position;
+     while(nearPlayer) {
+        Vector3 spawnPosition = findRandomPointInRoom();       
+        if(GetDistance(playerPos, spawnPosition) > (boardRows / 2) )  {
+            destroyGameObjectAt(spawnPosition);
+            GameObject instance = Instantiate (exit, spawnPosition, Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor[(int) spawnPosition.x, (int) spawnPosition.y] = instance;
+            nearPlayer = false;
+        }
+     }
+  }
+
+  //Spawnt den Key mit einer Distanz von boardRows/2 Felder vom Exit und Player
+  public void SpawnKey()
+  {
+      bool nearPlayer = true;
+      Vector3 playerPos = player.transform.position;
+      Vector3 exitPos = exit.transform.position;
+      while(nearPlayer) {
+        Vector3 spawnPosition = findRandomPointInRoom();    
+        Debug.Log("Distanz1: " + GetDistance(playerPos, spawnPosition) + "Distanz2: " + GetDistance(exitPos, spawnPosition) + "MinDistanz: " + boardRows/2 );
+        if(GetDistance(playerPos, spawnPosition) > (boardRows / 2) &&  GetDistance(exitPos, spawnPosition) > (boardRows / 2))  {
+            GameObject instance = Instantiate (key, spawnPosition, Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor[(int) spawnPosition.x, (int) spawnPosition.y] = instance;
+            nearPlayer = false;
+        }
+        else {
+            Debug.Log("Failed to create key");
+        }
+     }
+  }
+
+  //Spawnt den Spieler an zufälliger Position
   public void SpawnPlayer()
   {
      Vector3 spawnPos = findRandomPointInRoom();
@@ -373,17 +424,80 @@ public class BoardManager : MonoBehaviour
      positionFloor[(int) spawnPos.x, (int) spawnPos.y] = instance;
   }
 
+  //Spawn verschiedene Gegner
+  public void SpawnEnemies()
+  {
+     List<GameObject> floorList = new List<GameObject>();
+     floorList.AddRange(GameObject.FindGameObjectsWithTag("Floor"));
+     foreach (GameObject floor in floorList)
+     {
+        Vector3 spawnPosition = floor.transform.position;       
+        if (rnd.NextDouble() < spawnProhabilityEnemies) {
+            int tmp = rnd.Next(enemies.Length);
+            GameObject instance = Instantiate (enemies[tmp], spawnPosition, Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor[(int) spawnPosition.x, (int) spawnPosition.y] = instance;
+        }
+	 }
+  }
+
+  //Spawnt verschiedene Items
+  public void SpawnItems()
+  {
+     List<GameObject> floorList = new List<GameObject>();
+     floorList.AddRange(GameObject.FindGameObjectsWithTag("Floor"));
+     foreach (GameObject floor in floorList)
+     {
+        Vector3 spawnPosition = floor.transform.position;       
+        if (rnd.NextDouble() < spawnProhabilityItems) {
+            int tmp = rnd.Next(items.Length);
+            GameObject instance = Instantiate (items[tmp], spawnPosition, Quaternion.identity) as GameObject;
+            instance.transform.SetParent (transform);
+            positionFloor[(int) spawnPosition.x, (int) spawnPosition.y] = instance;
+        }
+	 }
+  }
+
+
+
+  //HILFSMETHODEN
+  //
+
+
+  //Findet einen zufälligen Punkt in einem Raum (Hardcoded auf Tag "floor")
   public Vector3 findRandomPointInRoom()
   {
-      System.Random rnd = new System.Random();
+      
       List<GameObject> floorList = new List<GameObject>();
       floorList.AddRange(GameObject.FindGameObjectsWithTag("Floor"));
       int randomIndex = rnd.Next(floorList.Count);
       GameObject floorTile = floorList[randomIndex];
       Vector3 position = floorTile.transform.position;
-       Debug.Log ("X: " + position.x + "Y: " + position.y + "Listengröße: " + floorList.Count);
-      return position;
-     
+      Debug.Log ("X: " + position.x + "Y: " + position.y + "Listengröße: " + floorList.Count);   
+      return position;     
+  }
+
+  //Zerstört den Floor an Position @Vector3 position
+  public void destroyGameObjectAt(Vector3 position)
+  {
+      List<GameObject> floorList = new List<GameObject>();
+      floorList.AddRange(GameObject.FindGameObjectsWithTag("Floor"));
+      foreach (GameObject floor in floorList)
+      {
+         Vector3 compare = floor.transform.position;
+         if(compare.x == position.x && compare.y == position.y)
+         {
+            Destroy(floor);  
+		 }
+	  }
+  }
+
+  //Berechnet Distanz zwischen zwei Punkten
+  public static double GetDistance(Vector3 v1, Vector3 v2)
+  {
+    float xDelta = v1.x - v2.x;
+    float yDelta = v1.y - v2.y;
+    return Mathf.Sqrt((Mathf.Pow(xDelta, 2) + Mathf.Pow(yDelta, 2)));
   }
   
 
@@ -398,7 +512,11 @@ public class BoardManager : MonoBehaviour
     DrawConnectors(root);
     drawWall(root);
     DrawConnectorWall(root);
-    SpawnPlayer();
+    SpawnPlayer();  
+    SpawnExit();
+    SpawnKey();
+    SpawnEnemies();
+    SpawnItems();
     }
         
   }

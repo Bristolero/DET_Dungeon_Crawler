@@ -8,6 +8,8 @@ TagManager:
   - Item
   - Floor
   - Wall
+  - Exit
+  - Connector
   layers:
   - Default
   - TransparentFX
@@ -48,7 +50,7 @@ TagManager:
   - name: Floor
     uniqueID: 955245157
     locked: 0
-  - name: Items
+  - name: Item
     uniqueID: 1590715827
     locked: 0
   - name: Units

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1205991497529614638
+--- !u!1 &3741581982968822191
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1205991497529614632}
-  - component: {fileID: 1205991497529614639}
+  - component: {fileID: 3741581982968822185}
+  - component: {fileID: 3741581982968822190}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1205991497529614632
+--- !u!4 &3741581982968822185
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205991497529614638}
+  m_GameObject: {fileID: 3741581982968822191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6075912, y: -1.3163639, z: -7.481487}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1205991497529614639
+--- !u!114 &3741581982968822190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205991497529614638}
+  m_GameObject: {fileID: 3741581982968822191}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b57ecfa9eaa2adc4db88104af489e741, type: 3}
@@ -49,5 +49,16 @@ MonoBehaviour:
   maxRoomSize: 10
   tile: {fileID: 5416922319471385754, guid: 928ee3d80e77ec641a6d7be61f61778b, type: 3}
   wall: {fileID: 3105088089470416641, guid: 1fac72b3a15dc5c469c9d0ace7612304, type: 3}
-  connectorTile: {fileID: 304949142679528136, guid: 47bc746738ba0844cbaf98e89cbbbead,
+  corridorTile: {fileID: 6208465318308664045, guid: 8a0bc1234330c9f4785c03198e624042,
     type: 3}
+  bugFixTile: {fileID: 0}
+  player: {fileID: 5192871777072333955, guid: 13f5659eecbf0854ca241c8303485762, type: 3}
+  enemies:
+  - {fileID: 7954098895762336174, guid: 48c78dd1511f4d64f895369bd9a7d9f9, type: 3}
+  - {fileID: 4485778769917812396, guid: 066f1e693c972c84eb5b658af3f692e1, type: 3}
+  - {fileID: 7954098895762336174, guid: 48c78dd1511f4d64f895369bd9a7d9f9, type: 3}
+  - {fileID: 4756912125131860139, guid: 6c0601fa118a4624dab3533c09ded8cb, type: 3}
+  - {fileID: 4756912125131860139, guid: 6c0601fa118a4624dab3533c09ded8cb, type: 3}
+  - {fileID: 4485778769917812396, guid: 066f1e693c972c84eb5b658af3f692e1, type: 3}
+  exit: {fileID: 3939037323079795849, guid: 2583a6a9a296bc34097a3ac97ef71356, type: 3}
+  key: {fileID: 6345882776200214425, guid: 8e691bac6a458de4a94d4d116c898788, type: 3}
