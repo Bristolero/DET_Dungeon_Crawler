@@ -40,5 +40,13 @@ public class Player : MonoBehaviour
         {
             this.transform.eulerAngles = new Vector3(0, 0, 0);
         }
-     }
+        if (h == 0)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        if (v == 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        }
+    }
 }
