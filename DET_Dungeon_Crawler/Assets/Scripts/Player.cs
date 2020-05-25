@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     // Attack mit dem sword
     private void swordAttack()
     {  
-        //die methode swordAttack wird mit dem Key"Space" kontrollieren.
+        //die methode swordAttack wird mit dem Key"Space" kontrolliert.
         if(Input.GetKeyDown(KeyCode.Space))
         {
             //die Position und Rotation von Attack ist abhängig von dem player.
