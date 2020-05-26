@@ -6,7 +6,7 @@ public class BoardManager : MonoBehaviour
 {
     public int boardRows, boardColumns;
     public int minRoomSize, maxRoomSize;
-    public GameObject tile;
+    public GameObject[] tile;
     public GameObject wall;
     public GameObject corridorTile;
     public GameObject player;
@@ -14,6 +14,7 @@ public class BoardManager : MonoBehaviour
     public GameObject[] items;
     public GameObject exit;
     public GameObject key;
+    public GameObject torch;
     public double spawnProhabilityEnemies;
     public double spawnProhabilityItems;
     private GameObject[,] positionFloor;
@@ -185,9 +186,9 @@ public class BoardManager : MonoBehaviour
         }
       }
 
-      Debug.Log ("Corridors: ");
+      Debug.Log ("Connectors: ");
       foreach (Rect corridor in connectors) {
-        Debug.Log ("corridor: " + corridor);
+        Debug.Log ("conecctor: " + corridor);
       }
     }
 
@@ -223,7 +224,8 @@ public class BoardManager : MonoBehaviour
     if(tree.IsLeaf()) {
      for (int i = (int) tree.room.x; i < tree.room.xMax; i++ ) {
       for (int j = (int) tree.room.y; j < tree.room.yMax; j++ ) {
-       GameObject newTile = Instantiate (tile, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
+       GameObject toSet = TileRandomizer();
+       GameObject newTile = Instantiate (toSet, new Vector3 (i,j,0f), Quaternion.identity) as GameObject;
        newTile.transform.SetParent(transform);
        positionFloor[i,j] = newTile;
 	  }
@@ -458,7 +460,40 @@ public class BoardManager : MonoBehaviour
 	 }
   }
 
+  //Spawnt Torches als nette Dekoration (Methode ist noch BAUSTELLE)
+  public void SpawnTorches(Tree tree)
+  {
+     List<GameObject> connectorList = new List<GameObject>();
+     connectorList.AddRange(GameObject.FindGameObjectsWithTag("Connector"));
+     if(tree==null)
+     {
+         return;
+	 }
+     if(tree.IsLeaf()) {
+        for (int i = (int) tree.room.x + ((int)tree.room.xMax - (int)tree.room.x)/3; i < (int) tree.room.xMax - ((int)tree.room.xMax - (int)tree.room.x)/3; i = i + ((int)tree.room.xMax - (int)tree.room.x)/3) {        
+            int j = (int) tree.room.yMax;
+            foreach (GameObject connector in connectorList)
+            {
+                Vector3 compare = connector.transform.position;
+                Vector3 toAdd = new Vector3(i,j,0f);
+                if(compare.x != i || compare.y != j)
+                {
+                    GameObject newTorch = Instantiate (torch, toAdd, Quaternion.identity) as GameObject;
+                    newTorch.transform.SetParent(transform);
+                    positionFloor[i,j] = newTorch;  
+		        }
+	        }
+        }
+     }
+     else {
+        SpawnTorches(tree.left);
+        SpawnTorches(tree.right);
+	 }
+  }
+  
 
+
+            
 
   //HILFSMETHODEN
   //
@@ -499,6 +534,23 @@ public class BoardManager : MonoBehaviour
     float yDelta = v1.y - v2.y;
     return Mathf.Sqrt((Mathf.Pow(xDelta, 2) + Mathf.Pow(yDelta, 2)));
   }
+
+
+  //Gibt einen zufälligen Tile zurück
+  public GameObject TileRandomizer()
+  {
+    
+    double prohab = rnd.NextDouble();
+    if(prohab > 0.1)
+    {
+        return tile[0];
+	}
+    else
+    {
+        int tmp = rnd.Next(tile.Length);
+        return tile[tmp];
+	}
+  }
   
 
   //init
@@ -517,6 +569,7 @@ public class BoardManager : MonoBehaviour
     SpawnKey();
     SpawnEnemies();
     SpawnItems();
+    //SpawnTorches(root);
     }
         
   }
