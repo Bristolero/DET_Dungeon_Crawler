@@ -24,11 +24,16 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
+    void Update()
+    {
+        //die Methode swordAttack wird aufgerufen 
+                swordAttack();
+    }
     void FixedUpdate()
     {
         Move();
         //die Methode swordAttack wird aufgerufen 
-        swordAttack();
+
     }
     // Attack mit dem sword
     private void swordAttack()
