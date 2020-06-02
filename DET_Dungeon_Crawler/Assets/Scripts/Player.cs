@@ -67,21 +67,17 @@ public class Player : MonoBehaviour
 
     private void bombAttack()
     {
+        timeVal += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.F))
         {
-            timeVal += Time.deltaTime;
+           
             //die Position und Rotation von Attack ist abhängig von dem player.
             GameObject go = GameObject.Instantiate(bombPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles)) as GameObject;
             go.GetComponent<Rigidbody2D>().velocity = new Vector3( bombSpeed, 0);
             float h = Input.GetAxis("Horizontal");
-            if (h<0)
+            if (h < 0)
             {
                 go.GetComponent<Rigidbody2D>().velocity = new Vector3(-bombSpeed, 0);
-            }
-            if(timeVal>0.3f)
-            {
-                go.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0);
-                timeVal =0;
             }
         }
     }
