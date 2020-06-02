@@ -7,19 +7,20 @@ public class Player : MonoBehaviour
 {  // Der Spieler bewegt sich mit einer Geschwindigkeit 3f  
     public float moveSpeed = 3f;
     private Vector3 attackEulerAngles;
-    private float timeVal;
+    private float timeVal= 0;
 
     //ein Rigidbody 2D component unter der Kontrolle vom physics engine
     public Rigidbody2D rb;
     public GameObject swordPrefab;
     public GameObject bombPrefab;
-    public float bombSpeed = 10f;
+    public float bombSpeed = 3f;
 
     //Die Position von attack ist vorne von dem player
     private Transform attackPosition;
 
     //Falls der Player den Key hat dann true
     private bool hasKey = false;
+   
     //Momentaner Index für die Anzahl an Scenen 
     private int nextSceneToLoad;
 
@@ -43,10 +44,8 @@ public class Player : MonoBehaviour
 
                 swordAttack();
             
-            bombAttack();
-            
-
-        swordAttack();
+                bombAttack();
+        
 
     }
     void FixedUpdate()
@@ -70,19 +69,32 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            timeVal += Time.deltaTime;
             //die Position und Rotation von Attack ist abhängig von dem player.
             GameObject go = GameObject.Instantiate(bombPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles)) as GameObject;
             go.GetComponent<Rigidbody2D>().velocity = new Vector3( bombSpeed, 0);
+            float h = Input.GetAxis("Horizontal");
+            if (h<0)
+            {
+                go.GetComponent<Rigidbody2D>().velocity = new Vector3(-bombSpeed, 0);
+            }
+            if(timeVal>0.3f)
+            {
+                bombSpeed = 0;
+                go.GetComponent<Rigidbody2D>().velocity = new Vector2(bombSpeed, 0);
+                timeVal =0;
+            }
         }
     }
     private void Move()
     {
         Vector3 vel = rb.velocity;
-        //h ist die Bewegung der Spieler in horizontaler Richtung,-1 nach links,1 nach rechts.
         float h = Input.GetAxis("Horizontal");
 
         //v ist die Bewegung der Spieler in vertikaler Richtung,-1 nach unten, 1 nach oben.
         float v = Input.GetAxis("Vertical");
+        //h ist die Bewegung der Spieler in horizontaler Richtung,-1 nach links,1 nach rechts.
+
         if (Mathf.Abs(h) > 0.05f || Mathf.Abs(v) > 0.05f)
         {
             //rigidbody bewegt sich mit moveSpeed im jeweiligen Richtung
@@ -93,6 +105,7 @@ public class Player : MonoBehaviour
         {
             this.transform.eulerAngles = new Vector3(0, 180, 0);
             attackEulerAngles = new Vector3(0, 0, 0);
+           
         }
         //wenn der Spieler nach rechts bewegt, sein Kopf bleibt nach rechts 
         if (h > 0)
