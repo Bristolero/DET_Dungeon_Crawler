@@ -80,8 +80,7 @@ public class Player : MonoBehaviour
             }
             if(timeVal>0.3f)
             {
-                bombSpeed = 0;
-                go.GetComponent<Rigidbody2D>().velocity = new Vector2(bombSpeed, 0);
+                go.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0);
                 timeVal =0;
             }
         }
