@@ -5,12 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {  // Der Spieler bewegt sich mit einer Geschwindigkeit 3f  
     public float moveSpeed = 3f;
-    private Vector3 swordEulerAngles;
+    private Vector3 attackEulerAngles;
     private float timeVal;
 
     //ein Rigidbody 2D component unter der Kontrolle vom physics engine
     public Rigidbody2D rb;
     public GameObject swordPrefab;
+    public GameObject bombPrefab;
+    public float bombSpeed = 10f;
+
     //Die Position von attack ist vorne von dem player
     private Transform attackPosition;
 
@@ -21,6 +24,7 @@ public class Player : MonoBehaviour
         attackPosition = transform.Find("Attack_pos");
         rb = GetComponent<Rigidbody2D>();
         swordPrefab.SetActive(true);
+        bombPrefab.SetActive(true);
     }
 
     // Update is called once per frame
@@ -28,6 +32,9 @@ public class Player : MonoBehaviour
     {
         //die Methode swordAttack wird aufgerufen 
                 swordAttack();
+            
+            bombAttack();
+            
     }
     void FixedUpdate()
     {
@@ -42,7 +49,17 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             //die Position und Rotation von Attack ist abhängig von dem player.
-            Instantiate(swordPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + swordEulerAngles));
+            Instantiate(swordPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles));
+        }
+    }
+
+    private void bombAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //die Position und Rotation von Attack ist abhängig von dem player.
+            GameObject go = GameObject.Instantiate(bombPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles)) as GameObject;
+            go.GetComponent<Rigidbody2D>().velocity = new Vector3( bombSpeed, 0);
         }
     }
     private void Move()
@@ -62,13 +79,13 @@ public class Player : MonoBehaviour
         if (h < 0)
         {
             this.transform.eulerAngles = new Vector3(0, 180, 0);
-            swordEulerAngles = new Vector3(0, 0, 0);
+            attackEulerAngles = new Vector3(0, 0, 0);
         }
         //wenn der Spieler nach rechts bewegt, sein Kopf bleibt nach rechts 
         if (h > 0)
         {
             this.transform.eulerAngles = new Vector3(0, 0, 0);
-            swordEulerAngles = new Vector3(0, 0, 0);
+            attackEulerAngles = new Vector3(0, 0, 0);
         }
         if (h == 0)
         {

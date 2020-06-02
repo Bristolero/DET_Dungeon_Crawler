@@ -198,3 +198,5 @@ MonoBehaviour:
   rb: {fileID: 0}
   swordPrefab: {fileID: 4444303415220752901, guid: 9ac35dae24fe044478394d178270856a,
     type: 3}
+  bombPrefab: {fileID: 3622651018196132875, guid: b51c16104a64d3d429942d3f8aa9af78,
+    type: 3}
