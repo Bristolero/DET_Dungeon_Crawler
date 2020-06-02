@@ -9,9 +9,7 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         Invoke("Explode", 0.3f);     
-        //GameObject.Instantiate(bombExplosionPrefab, transform.position, transform.rotation);
-        //GameObject.Destroy(this.gameObject);
-        //Destroy(gameObject, 0.3f);
+        Destroy(gameObject, 0.3f);
     }
 
     // Update is called once per frame
@@ -21,10 +19,8 @@ public class Bomb : MonoBehaviour
     }
     void Explode()
     {
-        Instantiate(bombExplosionPrefab, transform.position, Quaternion.identity); //1
-        GetComponent<MeshRenderer>().enabled = false; //2
-        transform.Find("Collider").gameObject.SetActive(false); //3
-        Destroy(gameObject, 0.3f); //4
+        GameObject ex = GameObject.Instantiate(bombExplosionPrefab, transform.position, transform.rotation) as GameObject; //1
+        Destroy(ex, 0.3f); //4
     }
 
 }

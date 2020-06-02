@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         swordPrefab.SetActive(true);
         bombPrefab.SetActive(true);
+
     }
 
     // Update is called once per frame
