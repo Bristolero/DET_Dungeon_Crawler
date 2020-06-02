@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {  // Der Spieler bewegt sich mit einer Geschwindigkeit 3f  
@@ -17,6 +18,11 @@ public class Player : MonoBehaviour
     //Die Position von attack ist vorne von dem player
     private Transform attackPosition;
 
+    //Falls der Player den Key hat dann true
+    private bool hasKey = false;
+    //Momentaner Index für die Anzahl an Scenen 
+    private int nextSceneToLoad;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,16 +32,22 @@ public class Player : MonoBehaviour
         swordPrefab.SetActive(true);
         bombPrefab.SetActive(true);
 
+        nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //die Methode swordAttack wird aufgerufen 
+
                 swordAttack();
             
             bombAttack();
             
+
+        swordAttack();
+
     }
     void FixedUpdate()
     {
@@ -96,5 +108,20 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
+    }
+
+    private void OnTriggerEnter2D (Collider2D other)
+    {
+        //Guckt ob der Spieler mit dem Key collided
+        if(other.tag == "Key")
+        {
+           hasKey = true;
+           other.gameObject.SetActive (false);
+           Destroy(other);
+        }
+        else if(other.tag == "Exit")
+        {
+            if(hasKey == true) SceneManager.LoadScene(nextSceneToLoad);  
+		}
     }
 }
