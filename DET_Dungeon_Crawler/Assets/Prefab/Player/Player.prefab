@@ -200,3 +200,7 @@ MonoBehaviour:
     type: 3}
   bombPrefab: {fileID: 3622651018196132875, guid: b51c16104a64d3d429942d3f8aa9af78,
     type: 3}
+  disappearPrefab: {fileID: 3354968538096387343, guid: db30dcf1f6257e64eb06b6a3bb54235a,
+    type: 3}
+  bombSpeed: 3
+  hp: 100

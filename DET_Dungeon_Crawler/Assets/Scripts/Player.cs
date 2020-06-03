@@ -13,8 +13,9 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject swordPrefab;
     public GameObject bombPrefab;
+    public GameObject disappearPrefab;
     public float bombSpeed = 3f;
-
+    public int hp;
     //Die Position von attack ist vorne von dem player
     private Transform attackPosition;
 
@@ -32,9 +33,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         swordPrefab.SetActive(true);
         bombPrefab.SetActive(true);
-
+        hp = 100;
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-
     }
 
     // Update is called once per frame
@@ -61,8 +61,10 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             //die Position und Rotation von Attack ist abhängig von dem player.
-            Instantiate(swordPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles));
-        }
+            GameObject slash = Instantiate(swordPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles));
+            slash.name = "PlayerSlash";
+            slash.AddComponent<Slash>();
+          }
     }
 
     private void bombAttack()
@@ -131,5 +133,31 @@ public class Player : MonoBehaviour
         {
             if(hasKey == true) SceneManager.LoadScene(nextSceneToLoad);  
 		}
+    }
+
+    private void Damage(int damage)
+    {
+        if (hp > 0)
+        {
+            hp -= damage;
+            if (hp <= 0)
+            {
+                hp = 0;
+                Die();
+            }
+            else
+            {
+                //damage
+            }
+
+        }
+    }
+
+    //der Player tot Methode
+    private void Die()
+    {
+        //disappeareffect
+        Instantiate(disappearPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

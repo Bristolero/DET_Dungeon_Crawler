@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Exit
   - Connector
+  - Key
   layers:
   - Default
   - TransparentFX
