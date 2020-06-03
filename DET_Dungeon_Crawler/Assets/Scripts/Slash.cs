@@ -24,17 +24,17 @@ public class Slash : MonoBehaviour
        switch(other.tag)
         {
             case "Player":
-                if (this.name == "MonsterSlash") { other.SendMessage("Damage", 5, SendMessageOptions.DontRequireReceiver); };
+                if (this.name == "MonsterSlash") { other.SendMessage("Damage", 5, SendMessageOptions.DontRequireReceiver); }
                 break;
             case "Monster":
-                if (this.name == "PlayerSlash") { other.SendMessage("Damage", 5, SendMessageOptions.DontRequireReceiver);  };
+                if (this.name == "PlayerSlash") { other.SendMessage("Damage", 5, SendMessageOptions.DontRequireReceiver);  }
                 break;
             case "Wall":
                 Destroy(gameObject);
                 break;
             default:// slash gegen slash  stoßen
                 if (this.name != other.name)
-                    Destroy(gameObject);
+                Destroy(gameObject);
                 break;
 
 

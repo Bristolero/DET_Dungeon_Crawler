@@ -6,32 +6,108 @@ using UnityEngine;
 
 public class Skeleton : MonoBehaviour
 {
+    public float moveSpeed = 3;
+    private Vector3 skeletonEulerAngles;
     public int hp;
+    private float h;
+    private float v;
+    
+    private float timeValChangeDirection = 2;
+
+    private Transform attackPos;
+    public Rigidbody2D rb;
     public GameObject skeletonPrefab;
     public GameObject disappearPrefab;
-    private Transform attackPos;
 
-    
-    void Start()
+    private void Awake()
     {
-        GetComponent<BoxCollider2D>().isTrigger = true;
+
+        rb = GetComponent<Rigidbody2D>();
+        gameObject.AddComponent<BoxCollider2D>();
+       
+    }
+   private void Start()
+    {
+        
         attackPos = transform.Find("attackPos");
-        InvokeRepeating("Attack", 0, 3);
         hp = 20;
     }
-    void Update()
+    
+
+    private void FixedUpdate()
     {
-        //Attack();
-        //transform.Translate(Vector3.down * Time.deltaTime * 5);
+        Move();
     }
+
+    private void Move()
+    {
+        if (timeValChangeDirection >= 1f)
+        {
+            int num = Random.Range(0, 3);
+            {
+                if (num <= 1)
+                {
+                    h = -1;
+                    v = 0;
+                }
+                else
+                {
+                    h = 1;
+                    v = 0;
+                 }
+               
+            }
+            timeValChangeDirection = 0;
+        }
+        else
+        {
+            timeValChangeDirection += Time.fixedDeltaTime;
+        }
+
+        rb.velocity = new Vector3(h * moveSpeed, v * moveSpeed);
+        if (h < 0)
+        {
+            this.transform.eulerAngles = new Vector3(0, 180, 0);
+            skeletonEulerAngles = new Vector3(0, 0, 0);
+
+        }
+        //wenn der Skeleton nach rechts bewegt, sein Kopf bleibt nach rechts 
+        if (h > 0)
+        {
+            this.transform.eulerAngles = new Vector3(0, 0, 0);
+            skeletonEulerAngles = new Vector3(0, 0, 0);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        //
+        switch (other.gameObject.tag)
+        {
+            case "Player":
+                Attack();
+                break;
+            case "Monster":
+                timeValChangeDirection = 1;
+                break;
+            case "Wall":
+                timeValChangeDirection = 1;
+                break;
+            default:
+                break;
+        }
+     }
     private void Attack()
     {
         GameObject slash = Instantiate(skeletonPrefab, attackPos.position, attackPos.rotation);
+        InvokeRepeating("Slash", 0, 3);
         slash.name = "MonsterSlash";
         slash.AddComponent<Slash>();
+        
     }
 
-    private void Damage(int damage)
+
+   private void Damage(int damage)
     {
         if (hp > 0)
         {

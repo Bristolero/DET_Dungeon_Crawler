@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         bombPrefab.SetActive(true);
         hp = 100;
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+
     }
 
     // Update is called once per frame
@@ -95,7 +96,7 @@ public class Player : MonoBehaviour
         if (Mathf.Abs(h) > 0.05f || Mathf.Abs(v) > 0.05f)
         {
             //rigidbody bewegt sich mit moveSpeed im jeweiligen Richtung
-            rb.velocity = new Vector3(h * moveSpeed, v * moveSpeed);
+            rb.velocity = new Vector3(h * moveSpeed, v *moveSpeed);
         }
         //wenn der Spieler nach links bewegt, sein Kopf dreht nach links
         if (h < 0)
