@@ -41,6 +41,7 @@ public class Skeleton : MonoBehaviour
         Move();
     }
 
+    //Monster wird 
     private void Move()
     {
         if (face == 1)
