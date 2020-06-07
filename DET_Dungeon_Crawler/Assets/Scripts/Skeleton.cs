@@ -11,7 +11,9 @@ public class Skeleton : MonoBehaviour
     public int hp;
     private float h;
     private float v;
-    
+    private Vector2 currentposition;
+    public float distnation = 10.0f;
+    private int face = 1;
     private float timeValChangeDirection = 2;
 
     private Transform attackPos;
@@ -28,7 +30,7 @@ public class Skeleton : MonoBehaviour
     }
    private void Start()
     {
-        
+        currentposition = gameObject.transform.position;
         attackPos = transform.Find("attackPos");
         hp = 20;
     }
@@ -36,7 +38,38 @@ public class Skeleton : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (face == 1)
+        {
+            gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime);
+            
+        }
+        if (face == 0)
+        {
+            gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime);
+
+        }
+        if (gameObject.transform.position.x > currentposition.x + distnation)
+        {
+            face = 0;
+            //transform.eulerAngles = new Vector3(gameObject.transform.position.x, 180, 0);
+        }
+        if (gameObject.transform.position.x < currentposition.x)
+        {
+            face = 1;
+        }
+        /* if (h < 0)
+         {
+             gameObject.transform.rotation.;
+
+         }
+         //wenn der Skeleton nach rechts bewegt, sein Kopf bleibt nach rechts 
+         else if (h > 0)
+         {
+             this.transform.eulerAngles = new Vector3(0, 0, 0);
+             //skeletonEulerAngles = new Vector3(0, 0, 0);
+         }*/
+
+
     }
 
     private void Move()
@@ -88,10 +121,10 @@ public class Skeleton : MonoBehaviour
                 Attack();
                 break;
             case "Monster":
-                timeValChangeDirection = 1;
+                timeValChangeDirection = 2;
                 break;
             case "Wall":
-                timeValChangeDirection = 1;
+                timeValChangeDirection = 2;
                 break;
             default:
                 break;
@@ -100,7 +133,7 @@ public class Skeleton : MonoBehaviour
     private void Attack()
     {
         GameObject slash = Instantiate(skeletonPrefab, attackPos.position, attackPos.rotation);
-        InvokeRepeating("Slash", 0, 3);
+        //InvokeRepeating("Attack", 0, 3);
         slash.name = "MonsterSlash";
         slash.AddComponent<Slash>();
         
