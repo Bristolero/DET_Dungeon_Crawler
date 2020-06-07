@@ -38,78 +38,33 @@ public class Skeleton : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Move();
+    }
+
+    private void Move()
+    {
         if (face == 1)
         {
-            gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime);
-            
+            gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime, Space.World);
+
         }
         if (face == 0)
         {
-            gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime);
+            gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime, Space.World);
 
         }
         if (gameObject.transform.position.x > currentposition.x + distnation)
         {
             face = 0;
-            //transform.eulerAngles = new Vector3(gameObject.transform.position.x, 180, 0);
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
         if (gameObject.transform.position.x < currentposition.x)
         {
             face = 1;
-        }
-        /* if (h < 0)
-         {
-             gameObject.transform.rotation.;
-
-         }
-         //wenn der Skeleton nach rechts bewegt, sein Kopf bleibt nach rechts 
-         else if (h > 0)
-         {
-             this.transform.eulerAngles = new Vector3(0, 0, 0);
-             //skeletonEulerAngles = new Vector3(0, 0, 0);
-         }*/
-
-
-    }
-
-    private void Move()
-    {
-        if (timeValChangeDirection >= 1f)
-        {
-            int num = Random.Range(0, 3);
-            {
-                if (num <= 1)
-                {
-                    h = -1;
-                    v = 0;
-                }
-                else
-                {
-                    h = 1;
-                    v = 0;
-                 }
-               
-            }
-            timeValChangeDirection = 0;
-        }
-        else
-        {
-            timeValChangeDirection += Time.fixedDeltaTime;
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-        rb.velocity = new Vector3(h * moveSpeed, v * moveSpeed);
-        if (h < 0)
-        {
-            this.transform.eulerAngles = new Vector3(0, 180, 0);
-            skeletonEulerAngles = new Vector3(0, 0, 0);
 
-        }
-        //wenn der Skeleton nach rechts bewegt, sein Kopf bleibt nach rechts 
-        if (h > 0)
-        {
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
-            skeletonEulerAngles = new Vector3(0, 0, 0);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
