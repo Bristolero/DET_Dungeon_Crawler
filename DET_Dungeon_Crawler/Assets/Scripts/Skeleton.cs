@@ -108,7 +108,6 @@ public class Skeleton : MonoBehaviour
 
 
    private void Damage(int damage)
-    {
    {
         if (hp > 0)
         {
