@@ -40,6 +40,7 @@ public class Skeleton : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (player == null ) return;
         distance = Vector3.Distance(player.position, transform.position);
         Move();
         if (distance < 1)
