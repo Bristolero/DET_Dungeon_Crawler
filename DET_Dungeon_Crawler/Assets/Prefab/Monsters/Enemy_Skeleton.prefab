@@ -151,7 +151,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!114 &-4175180106761404458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   hp: 0
+  distnation: 10
   rb: {fileID: 0}
   skeletonPrefab: {fileID: 4444303415220752901, guid: 9ac35dae24fe044478394d178270856a,
     type: 3}
