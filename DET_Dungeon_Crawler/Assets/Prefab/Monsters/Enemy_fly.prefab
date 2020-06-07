@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7954098895762336169}
   - component: {fileID: 7954098895762336165}
   - component: {fileID: 7954098895762336170}
+  - component: {fileID: 105570547640771276}
   m_Layer: 8
   m_Name: Enemy_fly
   m_TagString: Monster
@@ -150,3 +151,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &105570547640771276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954098895762336174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe68fe39ceb5fb148ac4aa3fee7a35e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6305763729893750876, guid: d2f1bc729b911b94aa6230d1ca8d7c64,
+    type: 3}

@@ -9,7 +9,7 @@ public class Slash : MonoBehaviour
     void Start()
     {
          //Slasheffekt verschwindet nach 0,3f sekunde
-        Invoke("Slash", 0.3f);
+        //Invoke("Slash", 0.3f);
         Destroy(gameObject, 0.3f);
     }
 

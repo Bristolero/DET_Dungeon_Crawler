@@ -11,13 +11,16 @@ public class Skeleton : MonoBehaviour
     public int hp;
     private float h;
     private float v;
-    
+    private Vector2 currentposition;
+    public float distnation = 10.0f;
+    private int face = 1;
     private float timeValChangeDirection = 2;
-
+    private Transform player;
     private Transform attackPos;
     public Rigidbody2D rb;
     public GameObject skeletonPrefab;
     public GameObject disappearPrefab;
+    private float distance;
 
     private void Awake()
     {
@@ -28,55 +31,54 @@ public class Skeleton : MonoBehaviour
     }
    private void Start()
     {
-        
+        currentposition = gameObject.transform.position;
         attackPos = transform.Find("attackPos");
+        player = GameObject.FindWithTag("Player").transform;
         hp = 20;
     }
     
 
     private void FixedUpdate()
     {
+        if (player == null ) return;
+        distance = Vector3.Distance(player.position, transform.position);
         Move();
-    }
-
-    private void Move()
-    {
-        if (timeValChangeDirection >= 1f)
+        if (distance < 1)
         {
-            int num = Random.Range(0, 3);
-            {
-                if (num <= 1)
-                {
-                    h = -1;
-                    v = 0;
-                }
-                else
-                {
-                    h = 1;
-                    v = 0;
-                 }
-               
-            }
-            timeValChangeDirection = 0;
+            moveSpeed = 0;
+            
         }
         else
         {
-            timeValChangeDirection += Time.fixedDeltaTime;
+            moveSpeed = 3;
+        }
+    }
+
+    //Monster wird 
+    private void Move()
+    {
+        if (face == 1)
+        {
+            gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime, Space.World);
+
+        }
+        if (face == 0)
+        {
+            gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime, Space.World);
+
+        }
+        if (gameObject.transform.position.x > currentposition.x + distnation)
+        {
+            face = 0;
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        if (gameObject.transform.position.x < currentposition.x)
+        {
+            face = 1;
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-        rb.velocity = new Vector3(h * moveSpeed, v * moveSpeed);
-        if (h < 0)
-        {
-            this.transform.eulerAngles = new Vector3(0, 180, 0);
-            skeletonEulerAngles = new Vector3(0, 0, 0);
 
-        }
-        //wenn der Skeleton nach rechts bewegt, sein Kopf bleibt nach rechts 
-        if (h > 0)
-        {
-            this.transform.eulerAngles = new Vector3(0, 0, 0);
-            skeletonEulerAngles = new Vector3(0, 0, 0);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -84,23 +86,26 @@ public class Skeleton : MonoBehaviour
         //
         switch (other.gameObject.tag)
         {
-            case "Player":
+           case "Player":
+
                 Attack();
                 break;
+
             case "Monster":
-                timeValChangeDirection = 1;
+                timeValChangeDirection = 2;
                 break;
             case "Wall":
-                timeValChangeDirection = 1;
+                timeValChangeDirection = 2;
                 break;
             default:
                 break;
         }
-     }
+    }
     private void Attack()
     {
+        Invoke("Attack", 1);
         GameObject slash = Instantiate(skeletonPrefab, attackPos.position, attackPos.rotation);
-        InvokeRepeating("Slash", 0, 3);
+        
         slash.name = "MonsterSlash";
         slash.AddComponent<Slash>();
         
