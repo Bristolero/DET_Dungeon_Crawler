@@ -15,11 +15,12 @@ public class Skeleton : MonoBehaviour
     public float distnation = 10.0f;
     private int face = 1;
     private float timeValChangeDirection = 2;
-
+    private Transform player;
     private Transform attackPos;
     public Rigidbody2D rb;
     public GameObject skeletonPrefab;
     public GameObject disappearPrefab;
+    private float distance;
 
     private void Awake()
     {
@@ -32,13 +33,24 @@ public class Skeleton : MonoBehaviour
     {
         currentposition = gameObject.transform.position;
         attackPos = transform.Find("attackPos");
+        player = GameObject.FindWithTag("Player").transform;
         hp = 20;
     }
     
 
     private void FixedUpdate()
     {
+        distance = Vector3.Distance(player.position, transform.position);
         Move();
+        if (distance < 1)
+        {
+            moveSpeed = 0;
+            
+        }
+        else
+        {
+            moveSpeed = 3;
+        }
     }
 
     //Monster wird 
@@ -73,9 +85,11 @@ public class Skeleton : MonoBehaviour
         //
         switch (other.gameObject.tag)
         {
-            case "Player":
+           case "Player":
+
                 Attack();
                 break;
+
             case "Monster":
                 timeValChangeDirection = 2;
                 break;
@@ -85,11 +99,12 @@ public class Skeleton : MonoBehaviour
             default:
                 break;
         }
-     }
+    }
     private void Attack()
     {
+        Invoke("Attack", 1);
         GameObject slash = Instantiate(skeletonPrefab, attackPos.position, attackPos.rotation);
-        //InvokeRepeating("Attack", 0, 3);
+        
         slash.name = "MonsterSlash";
         slash.AddComponent<Slash>();
         
