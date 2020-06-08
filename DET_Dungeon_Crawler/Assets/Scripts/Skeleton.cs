@@ -12,7 +12,7 @@ public class Skeleton : MonoBehaviour
     private float h;
     private float v;
     private Vector2 currentposition;
-    public float distnation = 2.0f;
+    public float destination = 2.0f;
     private int face = 1;
     private float timeValChangeDirection = 2;
     private Transform player;
@@ -73,7 +73,7 @@ public class Skeleton : MonoBehaviour
             gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime, Space.World);
 
         }
-        if (gameObject.transform.position.x > currentposition.x + distnation)
+        if (gameObject.transform.position.x > currentposition.x + destination)
         {
             face = 0;
             transform.eulerAngles = new Vector3(0, 180, 0);
