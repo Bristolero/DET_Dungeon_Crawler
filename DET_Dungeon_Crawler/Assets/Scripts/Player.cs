@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
             //die Position und Rotation von Attack ist abhängig von dem player.
             GameObject go = GameObject.Instantiate(bombPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles)) as GameObject;
             go.GetComponent<Rigidbody2D>().velocity = new Vector3( bombSpeed, 0);
+            go.name = "PlayerBomb";
             float h = Input.GetAxis("Horizontal");
             if (h < 0)
             {

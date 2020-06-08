@@ -19,6 +19,7 @@ public class BulletControl : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //überprüfung welche Gameobjekt hat Bullet getrofen
         switch (collision.tag)
         {
             case "Player":

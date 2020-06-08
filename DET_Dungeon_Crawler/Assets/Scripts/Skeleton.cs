@@ -12,7 +12,7 @@ public class Skeleton : MonoBehaviour
     private float h;
     private float v;
     private Vector2 currentposition;
-    public float distnation = 10.0f;
+    public float destination = 2.0f;
     private int face = 1;
     private float timeValChangeDirection = 2;
     private Transform player;
@@ -33,6 +33,7 @@ public class Skeleton : MonoBehaviour
     {
         currentposition = gameObject.transform.position;
         attackPos = transform.Find("attackPos");
+        // finde Players position um zu bestimmen wie weit mit Player
         player = GameObject.FindWithTag("Player").transform;
         hp = 20;
     }
@@ -40,9 +41,12 @@ public class Skeleton : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //wenn player tot und nicht mehr Players position finden kann, dann return
         if (player == null ) return;
+        //berechnen distance zwischen Skeleton und Player
         distance = Vector3.Distance(player.position, transform.position);
         Move();
+        //wenn Player in der Nähe von Skeleton, soll Skeleton Stop, wenn Player wieder weit von Skeleton, laufen Skeleton wieder
         if (distance < 1)
         {
             moveSpeed = 0;
@@ -59,15 +63,17 @@ public class Skeleton : MonoBehaviour
     {
         if (face == 1)
         {
+            //Skeleton nach rechte laufen
             gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime, Space.World);
 
         }
         if (face == 0)
         {
+            //Skeleton nach links laufen
             gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime, Space.World);
 
         }
-        if (gameObject.transform.position.x > currentposition.x + distnation)
+        if (gameObject.transform.position.x > currentposition.x + destination)
         {
             face = 0;
             transform.eulerAngles = new Vector3(0, 180, 0);
