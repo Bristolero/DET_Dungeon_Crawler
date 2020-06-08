@@ -12,7 +12,7 @@ public class Skeleton : MonoBehaviour
     private float h;
     private float v;
     private Vector2 currentposition;
-    public float distnation = 10.0f;
+    public float distnation = 2.0f;
     private int face = 1;
     private float timeValChangeDirection = 2;
     private Transform player;

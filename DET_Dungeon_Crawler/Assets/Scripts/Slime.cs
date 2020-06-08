@@ -38,6 +38,7 @@ public class Slime : MonoBehaviour
         GameObject go = GameObject.Instantiate(bombPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles)) as GameObject;
         go.GetComponent<Rigidbody2D>().velocity = new Vector3(bombSpeed, 0);
         float h = Input.GetAxis("Horizontal");
+        go.name = "MonsterBomb";
         if (h < 0)
         {
             go.GetComponent<Rigidbody2D>().velocity = new Vector3(-bombSpeed, 0);
