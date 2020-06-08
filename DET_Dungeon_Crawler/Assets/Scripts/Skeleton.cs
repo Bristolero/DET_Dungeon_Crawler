@@ -33,6 +33,7 @@ public class Skeleton : MonoBehaviour
     {
         currentposition = gameObject.transform.position;
         attackPos = transform.Find("attackPos");
+        // finde Players position um zu bestimmen wie weit mit Player
         player = GameObject.FindWithTag("Player").transform;
         hp = 20;
     }
@@ -40,9 +41,12 @@ public class Skeleton : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //wenn player tot und nicht mehr Players position finden kann, dann return
         if (player == null ) return;
+        //berechnen distance zwischen Skeleton und Player
         distance = Vector3.Distance(player.position, transform.position);
         Move();
+        //wenn Player in der Nähe von Skeleton, soll Skeleton Stop, wenn Player wieder weit von Skeleton, laufen Skeleton wieder
         if (distance < 1)
         {
             moveSpeed = 0;
@@ -59,11 +63,13 @@ public class Skeleton : MonoBehaviour
     {
         if (face == 1)
         {
+            //Skeleton nach rechte laufen
             gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime, Space.World);
 
         }
         if (face == 0)
         {
+            //Skeleton nach links laufen
             gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime, Space.World);
 
         }
