@@ -10,7 +10,9 @@ public class Bomb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //jede 1s wird es ein mal Methode aufrufen
         Invoke("Explode", 1f);     
+        //nach 1s wird gameObject löschen
         Destroy(gameObject, 1f);
     }
 
@@ -30,6 +32,7 @@ public class Bomb : MonoBehaviour
     }
     void Explode()
     {
+        //nach bomb geworfen wird bomb explosion
         GameObject ex = GameObject.Instantiate(bombExplosionPrefab, transform.position, transform.rotation) as GameObject; //1
         Destroy(ex, 0.3f); //4
     }
@@ -39,6 +42,7 @@ public class Bomb : MonoBehaviour
         switch (collision.tag)
         {
             case "Player":
+                //überprüfen ob der Bomb von Player
                 if (!isPlayerBomb)
                 { 
                     collision.SendMessage("Damage", 30);
