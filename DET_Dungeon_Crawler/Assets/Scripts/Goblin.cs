@@ -6,10 +6,13 @@ using UnityEngine;
 public class Goblin : MonoBehaviour
 {
     public float moveSpeed;
+    private float timer = 0.0f;
+    private float waitTime = 3.0f;
     public Rigidbody2D rb;
-    public GameObject slashPrefab;
     public GameObject disappearPrefab;
+    public GameObject bombPrefab;
     public int hp;
+    public int bombSpeed;
 
     int minRange = 3;
     int maxRange = 8;
@@ -19,6 +22,7 @@ public class Goblin : MonoBehaviour
     private float timeValChangeDirection = 1;
     private Transform attackPos;
     private Vector3 goblinEulerAngles;
+
 
 
     private void Awake()
@@ -31,13 +35,22 @@ public class Goblin : MonoBehaviour
     {
         attackPos = transform.Find("attackPos");
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();       
+        bombPrefab.SetActive(true);
         hp = 10;
     }
 
     void Update()
     {
-     
- 
+        timer += Time.deltaTime;
+        if(Vector3.Distance(target.position,transform.position) < minRange && Vector3.Distance(target.position,transform.position) >= minRange - 1)
+        {
+            if(timer > waitTime) 
+            {
+                ThrowBomb();
+                timer = timer - waitTime;
+			}
+            
+		}
 	}
 
     private void FixedUpdate()
@@ -46,6 +59,14 @@ public class Goblin : MonoBehaviour
         {
             Chase();
         }
+        else if(Vector3.Distance(target.position,transform.position) <= minRange - 1 )
+        {
+            Runaway();
+        }
+        else 
+        {        
+            Stop();
+		}
 	}
 
 
@@ -84,7 +105,7 @@ public class Goblin : MonoBehaviour
             this.transform.eulerAngles = new Vector3(0, 180, 0);
             goblinEulerAngles = new Vector3(0, 0, 0);
         }
-        //wenn der Skeleton nach rechts bewegt, sein Kopf bleibt nach rechts 
+        //wenn der Goblin sich nach rechts bewegt, sein Kopf bleibt nach rechts 
         if (h > 0)
         {
             this.transform.eulerAngles = new Vector3(0, 0, 0);
@@ -92,37 +113,93 @@ public class Goblin : MonoBehaviour
         }
     }
 
-
-    void OnCollisionEnter2D(Collision2D other)
+    private void Stop()
     {
-        //
-        switch (other.gameObject.tag)
+        rb.velocity = new Vector3(0, 0);
+        if (h < 0)
         {
-            case "Player":
-                Attack();
-                break;
-            case "Monster":
-                timeValChangeDirection = 1;
-                break;
-            case "Wall":
-                timeValChangeDirection = 1;
-                break;
-            default:
-                break;
+            this.transform.eulerAngles = new Vector3(0, 180, 0);
+            goblinEulerAngles = new Vector3(0, 0, 0);
         }
-     }
+        //wenn der Goblin sich nach rechts bewegt, sein Kopf bleibt nach rechts 
+        if (h > 0)
+        {
+            this.transform.eulerAngles = new Vector3(0, 0, 0);
+            goblinEulerAngles = new Vector3(0, 0, 0);
+        }
+	}
 
-    private void Move()
-    {
+    private void Runaway() {
+        if(target.position.x > transform.position.x)
+        {
+            h = -1;
+		}
+        else if(target.position.x < transform.position.x)
+        {
+            h = 1;
+		}
+        else
+        {
+            h = 0;
+		}
+
+        if(target.position.y > transform.position.y)
+        {
+            v = -1;
+		}
+        else if(target.position.y < transform.position.y)
+        {
+            v = 1;
+		}
+        else
+        {
+            v = 0;
+		}
         
-    }
+        rb.velocity = new Vector3(h * moveSpeed, v * moveSpeed);
+        if (h < 0)
+        {
+            this.transform.eulerAngles = new Vector3(0, 180, 0);
+            goblinEulerAngles = new Vector3(0, 0, 0);
+        }
+        if (h > 0)
+        {
+            this.transform.eulerAngles = new Vector3(0, 0, 0);
+            goblinEulerAngles = new Vector3(0, 0, 0);
+        }
+	}
 
-    private void Attack()
+    private void ThrowBomb()
     {
-        GameObject slash = Instantiate(slashPrefab, attackPos.position, attackPos.rotation);
-        InvokeRepeating("Slash", 0, 3);
-        slash.name = "MonsterSlash";
-        slash.AddComponent<Slash>();       
+        GameObject bomb = GameObject.Instantiate(bombPrefab, attackPos.position, Quaternion.Euler(transform.eulerAngles + goblinEulerAngles));
+        Vector3 tmp = target.transform.position;
+        if(tmp.x > bomb.transform.position.x)
+        {
+           h = 1;
+		}
+        else if(tmp.x < bomb.transform.position.x)
+        {
+           h = -1;
+		}
+        else
+        {
+           h = 0;
+		}
+
+        if(tmp.y > bomb.transform.position.y)
+        {
+            v = 1;
+		}
+        else if(tmp.y < bomb.transform.position.y)
+        {
+            v = -1;
+		}
+        else
+        {
+            v = 0;
+		}
+        bomb.GetComponent<Rigidbody2D>().velocity = new Vector3(h*bombSpeed, v*bombSpeed);
+
     }
 
     private void Damage(int damage)
