@@ -19,7 +19,6 @@ public class Goblin : MonoBehaviour
     private Transform target;
     private float h;
     private float v;   
-    private float timeValChangeDirection = 1;
     private Transform attackPos;
     private Vector3 goblinEulerAngles;
 
