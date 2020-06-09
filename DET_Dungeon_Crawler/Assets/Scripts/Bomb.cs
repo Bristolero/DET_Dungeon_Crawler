@@ -35,26 +35,5 @@ public class Bomb : MonoBehaviour
         GameObject ex = GameObject.Instantiate(bombExplosionPrefab, transform.position, transform.rotation) as GameObject; //1
         Destroy(ex, 0.3f); //4
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //überprüfung welche Gameobjekt hat Bullet getrofen
-        switch (other.tag)
-        {
-            case "Player":
-                //überprüfen ob der Bomb von Player
-                other.SendMessage("Damage", 20, SendMessageOptions.DontRequireReceiver);
-                break;
-            case "Monster":
-                other.SendMessage("MonsterDamage", 20, SendMessageOptions.DontRequireReceiver);
-                break;
-
-            case "Wall":
-                Destroy(gameObject);
-                break;
-            default:
-                break;
-
-
-        }
-    }
+   
 }
