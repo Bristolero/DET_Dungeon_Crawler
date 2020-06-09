@@ -103,7 +103,15 @@ public class Skeleton : MonoBehaviour
                
                 break;
             case "Wall":
-              
+                if(face == 0)
+                {
+                    face = 1;
+                }
+                if (face == 1)
+                {
+                    face = 0;
+                }
+
                 break;
             default:
                 break;
@@ -111,7 +119,7 @@ public class Skeleton : MonoBehaviour
     }
     private void Attack()
     {
-        Invoke("Attack", 1);
+        Invoke("Attack", 2);
         GameObject slash = Instantiate(skeletonPrefab, attackPos.position, attackPos.rotation);
         
         slash.name = "MonsterSlash";
