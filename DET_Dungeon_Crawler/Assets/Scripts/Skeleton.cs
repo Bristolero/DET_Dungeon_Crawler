@@ -65,14 +65,15 @@ public class Skeleton : MonoBehaviour
         if (face == 1)
         {
             //Skeleton nach rechte laufen
-            gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime, Space.World);
+            //gameObject.transform.Translate(Vector2.right * moveSpeed * Time.fixedDeltaTime, Space.World);
+            rb.velocity = new Vector3(1 * moveSpeed, 0 * moveSpeed);
 
         }
         if (face == 0)
         {
             //Skeleton nach links laufen
-            gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime, Space.World);
-
+            //gameObject.transform.Translate(Vector2.left * moveSpeed * Time.fixedDeltaTime, Space.World);
+            rb.velocity = new Vector3(-1 * moveSpeed, 0 * moveSpeed);
         }
         if (gameObject.transform.position.x > currentposition.x + destination)
         {
@@ -102,7 +103,15 @@ public class Skeleton : MonoBehaviour
                
                 break;
             case "Wall":
-              
+                if(face == 0)
+                {
+                    face = 1;
+                }
+                if (face == 1)
+                {
+                    face = 0;
+                }
+
                 break;
             default:
                 break;
@@ -110,7 +119,7 @@ public class Skeleton : MonoBehaviour
     }
     private void Attack()
     {
-        Invoke("Attack", 1);
+        Invoke("Attack", 2);
         GameObject slash = Instantiate(skeletonPrefab, attackPos.position, attackPos.rotation);
         
         slash.name = "MonsterSlash";

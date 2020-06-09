@@ -83,6 +83,10 @@ public class Player : MonoBehaviour
             {
                 go.GetComponent<Rigidbody2D>().velocity = new Vector3(-bombSpeed, 0);
             }
+            if (h == 0)
+            {
+                go.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0);
+            }
         }
     }
     private void Move()
