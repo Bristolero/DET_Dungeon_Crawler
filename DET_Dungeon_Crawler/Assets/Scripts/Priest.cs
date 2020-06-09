@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
@@ -142,9 +142,9 @@ public class Priest : MonoBehaviour
             case "Monster":
                 dir = Random.Range(1,4);
                 break;
-            case "Wall":
-                dir = Random.Range(1,4);
-                break;
+            //case "Wall":
+              //  dir = Random.Range(1,4);
+                //break;
             default:
                 break;  
 		}
@@ -160,7 +160,7 @@ public class Priest : MonoBehaviour
     }
     
 
-    private void Damage(int damage)
+    private void MonsterDamage(int damage)
     {
         if (hp > 0)
         {

@@ -23,7 +23,7 @@ public class Skull : MonoBehaviour
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();       
-        hp = 20;
+        hp = 5;
     }
 
     // Update is called once per frame
@@ -81,7 +81,7 @@ public class Skull : MonoBehaviour
 
 
 
-    private void Damage(int damage)
+    private void MonsterDamage(int damage)
     {
         if (hp > 0)
         {

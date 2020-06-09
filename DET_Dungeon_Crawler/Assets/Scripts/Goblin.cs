@@ -35,7 +35,7 @@ public class Goblin : MonoBehaviour
         attackPos = transform.Find("attackPos");
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();       
         bombPrefab.SetActive(true);
-        hp = 10;
+        hp = 5;
     }
 
     void Update()
@@ -201,7 +201,7 @@ public class Goblin : MonoBehaviour
 
     }
 
-    private void Damage(int damage)
+    private void MonsterDamage(int damage)
    {
         if (hp > 0)
         {
