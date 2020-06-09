@@ -27,7 +27,7 @@ public class Slash : MonoBehaviour
                 if (this.name == "MonsterSlash") { other.SendMessage("Damage", 5, SendMessageOptions.DontRequireReceiver); }
                 break;
             case "Monster":
-                if (this.name == "PlayerSlash") { other.SendMessage("Damage", 5, SendMessageOptions.DontRequireReceiver);  }
+                if (this.name == "PlayerSlash") { other.SendMessage("MonsterDamage", 5, SendMessageOptions.DontRequireReceiver);  }
                 break;
             case "Wall":
                 Destroy(gameObject);

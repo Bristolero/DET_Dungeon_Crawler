@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   hp: 0
-  distnation: 10
+  destination: 2
   rb: {fileID: 0}
   skeletonPrefab: {fileID: 4444303415220752901, guid: 9ac35dae24fe044478394d178270856a,
     type: 3}

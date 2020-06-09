@@ -14,7 +14,7 @@ public class Skeleton : MonoBehaviour
     private Vector2 currentposition;
     public float destination = 2.0f;
     private int face = 1;
-    private float timeValChangeDirection = 2;
+  
     private Transform player;
     private Transform attackPos;
     public Rigidbody2D rb;
@@ -50,7 +50,8 @@ public class Skeleton : MonoBehaviour
         if (distance < 1)
         {
             moveSpeed = 0;
-            
+            //Attack();
+
         }
         else
         {
@@ -93,15 +94,15 @@ public class Skeleton : MonoBehaviour
         switch (other.gameObject.tag)
         {
            case "Player":
-
                 Attack();
+                
                 break;
 
             case "Monster":
-                timeValChangeDirection = 2;
+               
                 break;
             case "Wall":
-                timeValChangeDirection = 2;
+              
                 break;
             default:
                 break;
@@ -118,7 +119,7 @@ public class Skeleton : MonoBehaviour
     }
 
 
-   private void Damage(int damage)
+   private void MonsterDamage(int damage)
    {
         if (hp > 0)
         {

@@ -165,3 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6305763729893750876, guid: d2f1bc729b911b94aa6230d1ca8d7c64,
     type: 3}
+  disappearPrefab: {fileID: 3354968538096387343, guid: db30dcf1f6257e64eb06b6a3bb54235a,
+    type: 3}
+  moveSpeed: 3
+  rb: {fileID: 0}

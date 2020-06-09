@@ -6,7 +6,6 @@ public class Bomb : MonoBehaviour
 {
     public GameObject bombExplosionPrefab;
     private float timeVal = 0;
-    public bool isPlayerBomb;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,35 +35,5 @@ public class Bomb : MonoBehaviour
         GameObject ex = GameObject.Instantiate(bombExplosionPrefab, transform.position, transform.rotation) as GameObject; //1
         Destroy(ex, 0.3f); //4
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //überprüfung welche Gameobjekt hat Bullet getrofen
-        switch (collision.tag)
-        {
-            case "Player":
-                //überprüfen ob der Bomb von Player
-                if (!isPlayerBomb)
-                { 
-                    collision.SendMessage("Damage", 30);
-                    Destroy(gameObject);
-                    
-                }
-                break;
-            case "Monster":
-                if (isPlayerBomb)
-                {
-                    collision.SendMessage("Die");
-                    Destroy(gameObject);
-                }
-                break;
-
-            case "Wall":
-                Destroy(gameObject);
-                break;
-            default:
-                break;
-
-
-        }
-    }
+   
 }
