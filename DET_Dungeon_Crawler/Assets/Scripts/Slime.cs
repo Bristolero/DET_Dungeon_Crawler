@@ -5,6 +5,7 @@ using UnityEngine;
 public class Slime : MonoBehaviour
 {
     public GameObject bombPrefab;
+    public GameObject disappearPrefab;
     public float bombSpeed = 3f;
     private Transform attackPosition;
     private float timeVal = 0;
@@ -43,5 +44,30 @@ public class Slime : MonoBehaviour
         {
             go.GetComponent<Rigidbody2D>().velocity = new Vector3(-bombSpeed, 0);
         }
+    }
+    private void MonsterDamage(int damage)
+    {
+        if (hp > 0)
+        {
+            hp -= damage;
+            if (hp <= 0)
+            {
+                hp = 0;
+                Die();
+            }
+            else
+            {
+                //damage
+            }
+
+        }
+    }
+
+    //der Monster tot Methode
+    private void Die()
+    {
+        //disappeareffect
+        Instantiate(disappearPrefab, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
