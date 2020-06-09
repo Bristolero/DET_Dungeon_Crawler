@@ -94,7 +94,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombExplosionPrefab: {fileID: 1335657522833506389, guid: 0c0fafd14650d04429e4f8a18d38309b,
     type: 3}
-  isPlayerBomb: 0
 --- !u!50 &-3049732160413668881
 Rigidbody2D:
   serializedVersion: 4
