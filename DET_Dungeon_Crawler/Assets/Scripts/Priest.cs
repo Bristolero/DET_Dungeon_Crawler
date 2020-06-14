@@ -53,7 +53,6 @@ public class Priest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        directionChanger();
         timer += Time.deltaTime;
         if(timer >= waitTime)
         {
@@ -65,7 +64,11 @@ public class Priest : MonoBehaviour
                 Invoke("SummonSkull", 2);
                 Destroy (torch, 2f);                         
 			}
-            timer = timer - waitTime;
+            timer = timer - waitTime;          
+		}
+        if(Vector3.Distance(target.position,transform.position) > minRange) 
+        {
+            directionChanger(); 
 		}
     }
 

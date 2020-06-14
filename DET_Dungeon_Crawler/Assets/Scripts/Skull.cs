@@ -9,10 +9,10 @@ public class Skull : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject disappearPrefab;
     public float chargeDistance;
-    private float h;
-    private float v;
     private Transform target;
     private Vector3 skullEulerAngles;
+    private float h;
+    private float v;
 
     void Awake()
     {
