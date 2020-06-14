@@ -25,12 +25,12 @@ public class Priest : MonoBehaviour
     private Vector2 movement;
     private float v;
     private float h;
-
+    private float wallRange = 1;
     private float dirTotal = 5f;
     private float dirTimer = 0f;
 
     private Vector3 priestEulerAngles;
-
+    
     
 
 
@@ -59,10 +59,12 @@ public class Priest : MonoBehaviour
             if(Vector3.Distance(target.position,transform.position) < minRange) 
             {
                 Transform tmp = spawnPos;
-                GameObject torch = Instantiate(torchPrefab, tmp.position, tmp.rotation);
-                Stop();
-                Invoke("SummonSkull", 2);
-                Destroy (torch, 2f);                         
+                if(!checkWall(tmp)) {
+                    GameObject torch = Instantiate(torchPrefab, tmp.position, tmp.rotation);
+                    Stop();
+                    Invoke("SummonSkull", 2);
+                    Destroy (torch, 2f);
+                }
 			}
             timer = timer - waitTime;          
 		}
@@ -85,6 +87,19 @@ public class Priest : MonoBehaviour
               dir = Random.Range(1,4);
               dirTimer = dirTimer - dirTotal;
 		}
+	}
+
+    private bool checkWall(Transform trans)
+    {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        foreach(GameObject wall in walls)
+        {
+            if(Vector3.Distance(wall.transform.position, trans.position) <= wallRange)
+            {
+                return true;     
+			}
+		}
+        return false;
 	}
 
     private void RandomMovement()

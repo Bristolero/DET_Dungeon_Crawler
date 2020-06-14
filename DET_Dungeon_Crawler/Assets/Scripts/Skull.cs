@@ -17,6 +17,7 @@ public class Skull : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
         gameObject.AddComponent<BoxCollider2D>();
 	}
     // Start is called before the first frame update
