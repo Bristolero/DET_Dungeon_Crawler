@@ -24,12 +24,11 @@ public class Explosion : MonoBehaviour
         {
             case "Player":
                 //überprüfen ob der Bomb von Player
-                other.SendMessage("Damage", 20, SendMessageOptions.DontRequireReceiver);
+                if (this.name == "MonsterExplosion") { other.SendMessage("Damage", 10, SendMessageOptions.DontRequireReceiver); }
                 break;
             case "Monster":
-                other.SendMessage("MonsterDamage", 20, SendMessageOptions.DontRequireReceiver);
+                if (this.name == "PlayerExplosion") { other.SendMessage("MonsterDamage", 10, SendMessageOptions.DontRequireReceiver); }
                 break;
-
             case "Wall":
                 Destroy(gameObject);
                 break;

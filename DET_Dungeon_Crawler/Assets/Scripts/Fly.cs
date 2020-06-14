@@ -12,7 +12,7 @@ public class Fly : MonoBehaviour
     private float timeValChangeDirection = 2;
     private float h;
     private float v;
-    public float moveSpeed = 3;
+    public float moveSpeed = 2;
     public Rigidbody2D rb;
     private int hp;
 
@@ -89,7 +89,7 @@ public class Fly : MonoBehaviour
         }
 
 
-        transform.Translate(Vector3.right * h * moveSpeed * Time.fixedDeltaTime, Space.World);
+        rb.velocity = new Vector3(h * moveSpeed, v * moveSpeed);
         if (h<0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
@@ -98,7 +98,7 @@ public class Fly : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-            transform.Translate(Vector3.up * v * moveSpeed * Time.fixedDeltaTime, Space.World);
+            
     }
     void OnCollisionEnter2D(Collision2D other)
     {

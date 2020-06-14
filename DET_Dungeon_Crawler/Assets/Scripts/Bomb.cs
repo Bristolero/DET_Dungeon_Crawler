@@ -33,6 +33,8 @@ public class Bomb : MonoBehaviour
     {
         //nach bomb geworfen wird bomb explosion
         GameObject ex = GameObject.Instantiate(bombExplosionPrefab, transform.position, transform.rotation) as GameObject; //1
+        if (this.name == "MonsterBomb") { ex.name = "MonsterExplosion"; }
+        if (this.name == "PlayerBomb") { ex.name = "PlayerExplosion"; }
         Destroy(ex, 0.3f); //4
     }
    
