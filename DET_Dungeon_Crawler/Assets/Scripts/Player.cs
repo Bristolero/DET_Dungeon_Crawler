@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private Transform attackPosition;
 
     //Falls der Player den Key hat dann true
-    private bool hasKey = false;
+    public bool hasKey = false;
    
     //Momentaner Index für die Anzahl an Scenen 
     private int nextSceneToLoad;
