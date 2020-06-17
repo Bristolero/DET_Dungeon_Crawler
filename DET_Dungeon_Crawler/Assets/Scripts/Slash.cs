@@ -32,6 +32,9 @@ public class Slash : MonoBehaviour
             case "Wall":
                 Destroy(gameObject);
                 break;
+            case "Item":
+                if (this.name == "PlayerSlash") { other.SendMessage("MonsterDamage", 5, SendMessageOptions.DontRequireReceiver); }
+                break;
             default:// slash gegen slash  stoßen
                 if (this.name != other.name)
                 Destroy(gameObject);

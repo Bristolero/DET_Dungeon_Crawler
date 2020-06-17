@@ -379,6 +379,19 @@ public class BoardManager : MonoBehaviour
      return true;
   }
 
+  public bool isMonsterHere(Vector3 targetPos)
+  {
+      GameObject[] Monsters = GameObject.FindGameObjectsWithTag("Monster");
+       foreach(GameObject current in Monsters)
+        {
+           if(current.transform.position == targetPos)
+           {
+           return false;
+           }
+        }
+        return true;
+  }
+
   //Spawnt den Exit mit einer Distanz von boardRows/2 Felder vom Player
   public void SpawnExit()
   {
@@ -453,9 +466,11 @@ public class BoardManager : MonoBehaviour
         Vector3 spawnPosition = floor.transform.position;       
         if (rnd.NextDouble() < spawnProhabilityItems) {
             int tmp = rnd.Next(items.Length);
-            GameObject instance = Instantiate (items[tmp], spawnPosition, Quaternion.identity) as GameObject;
-            instance.transform.SetParent (transform);
-            positionFloor[(int) spawnPosition.x, (int) spawnPosition.y] = instance;
+            if(isMonsterHere(spawnPosition)) {
+                GameObject instance = Instantiate (items[tmp], spawnPosition, Quaternion.identity) as GameObject;
+                instance.transform.SetParent (transform);
+                positionFloor[(int) spawnPosition.x, (int) spawnPosition.y] = instance;
+            }
         }
 	 }
   }

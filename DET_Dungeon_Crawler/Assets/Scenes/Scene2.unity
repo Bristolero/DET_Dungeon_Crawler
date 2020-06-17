@@ -3676,8 +3676,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8007404458389665285}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &442655567
-BoxCollider2D:
+--- !u!60 &442655567
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3689,7 +3689,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03496933, y: -0.1713512}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3699,9 +3699,27 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.7324495, y: 0.6531596}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.2428412, y: 0.21852303}
+      - {x: 1.2028412, y: 0.25420475}
+      - {x: 0.44040048, y: 0.046274185}
+      - {x: 0.22511353, y: 0.9998865}
+      - {x: -0.52340853, y: 1.261136}
+      - {x: -0.9524894, y: 1.1186187}
+      - {x: -1.0603406, y: 0.93931866}
+      - {x: -1.37916, y: 0.58212495}
+      - {x: -1.3860228, y: 0.5619323}
+      - {x: -1.3970457, y: 0.097841024}
+      - {x: -1.175796, y: -1.058068}
+      - {x: -1.2229545, y: -1.2477274}
+      - {x: -0.8777505, y: -1.1182674}
+      - {x: -0.08522714, y: -1.2410227}
+      - {x: -0.089772336, y: -0.37875056}
+      - {x: 0.49014413, y: -0.19949508}
+      - {x: 0.6436846, y: -0.42591536}
+      - {x: 1.062539, y: -0.5034065}
+      - {x: 1.5753901, y: -0.2115655}
 --- !u!95 &442655571
 Animator:
   serializedVersion: 3
@@ -12385,7 +12403,7 @@ PrefabInstance:
     - target: {fileID: 8007404459473983642, guid: 1786e869c9f552e409ee6e43085bacd1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 8007404459473983642, guid: 1786e869c9f552e409ee6e43085bacd1,
         type: 3}
@@ -12462,5 +12480,6 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: -0.5565739
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8007404459473983653, guid: 1786e869c9f552e409ee6e43085bacd1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1786e869c9f552e409ee6e43085bacd1, type: 3}

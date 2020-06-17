@@ -320,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 3741581982968822190, guid: 7e0a209c5c01cb44cb27d0f036e94270,
         type: 3}
       propertyPath: spawnProhabilityEnemies
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 3741581982968822190, guid: 7e0a209c5c01cb44cb27d0f036e94270,
         type: 3}
