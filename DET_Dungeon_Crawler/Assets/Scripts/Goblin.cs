@@ -72,11 +72,11 @@ public class Goblin : MonoBehaviour
     //Jagt den Spieler falls Distanz klein ist
     //v und h werden je nach Position des Spielers verändert
     private void Chase() {	           
-        if(target.position.x > transform.position.x)
+        if(target.position.x + 1 > transform.position.x)
         {
             h = 1;
 		}
-        else if(target.position.x < transform.position.x)
+        else if(target.position.x - 1 < transform.position.x)
         {
             h = -1;
 		}
@@ -85,11 +85,11 @@ public class Goblin : MonoBehaviour
             h = 0;
 		}
 
-        if(target.position.y > transform.position.y)
+        if(target.position.y + 1 > transform.position.y)
         {
             v = 1;
 		}
-        else if(target.position.y < transform.position.y)
+        else if(target.position.y - 1 < transform.position.y)
         {
             v = -1;
 		}
