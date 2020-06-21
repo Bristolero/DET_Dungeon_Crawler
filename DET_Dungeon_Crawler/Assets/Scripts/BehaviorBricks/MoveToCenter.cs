@@ -5,11 +5,11 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
 using System.Collections;
 using System.Collections.Generic;
  
-[Action("MyActions/MoveToPlayer")]
+[Action("MyActions/MoveToCenter")]
 [Help("Bewegt den Boss zum Spieler")]
 
 //Boss in Richtung Spieler
-public class MoveToPlayer : BasePrimitiveAction
+public class MoveToCenter : BasePrimitiveAction
 {
     [InParam("GameObject")]
     [Help("The gameObject that will be moved, in this case the boss")]
@@ -19,61 +19,61 @@ public class MoveToPlayer : BasePrimitiveAction
     [Help("Movement speed of the boss")]
     public float moveSpeed;
 
-    private Transform targetTransform;
     private Transform bossTransform;
+    private Vector3 target;
     private Rigidbody2D rb; 
     private float h;
     private float v;
     private Vector3 bossEulerAngles;
-    private float distance = 6.5f;
+    private float distance = 7f;
 
     //Für Animationen
     private Animator m_Animator;
     private bool m_Move;
+    
 
+    
 
     public override void OnStart()
     {
-        Debug.Log("MoveToPlayer startet");
+        Debug.Log("MoveToCenter startet");
         bossTransform = gameObject.transform;
-        targetTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();       
         rb = gameObject.GetComponent<Rigidbody2D>();
+        //Hard-coded auf Mitte des Raumes
+        Vector3 target = new Vector3 (0,0,-6.26703f);
 
         m_Animator = gameObject.GetComponent<Animator>();
         m_Move = false;
 	}
 
-    private void Chase() {	    
-        targetTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
-        bossTransform = gameObject.transform;
+    private void Move() {	         
+    
         m_Move = true;
-        if(calculateDistance(targetTransform, bossTransform)) {
-            if(targetTransform.position.x > bossTransform.position.x)
+        if(target.x > bossTransform.position.x)
             {
                 h = 1;
 		    }
-            else if(targetTransform.position.x < bossTransform.position.x)
-            {
-                h = -1;
-		    }
-            else
+            else if(target.x == bossTransform.position.x)
             {
                 h = 0;
 		    }
+            else
+            {
+                h = -1;
+		    }
 
-            if(targetTransform.position.y > bossTransform.position.y)
+            if(target.y > bossTransform.position.y)
             {
                 v = 1;
 		    }
-            else if(targetTransform.position.y < bossTransform.position.y)
-            {
-                v = -1;
-		    }
-            else
+            else if(target.y == bossTransform.position.y)
             {
                 v = 0;
 		    }
-        
+            else
+            {
+                v = -1;
+		    }
             rb.velocity = new Vector3(h * moveSpeed, v * moveSpeed);
             if (h <= 0)
             {
@@ -86,19 +86,14 @@ public class MoveToPlayer : BasePrimitiveAction
                 bossTransform.eulerAngles = new Vector3(0, 0, 0);
                 bossEulerAngles = new Vector3(0, 0, 0);
             }
-        }
-        else Stop();
+            Debug.Log(Vector3.Distance(gameObject.transform.position, target));
     }
 
     private void Stop() {
         rb.velocity = new Vector3(0, 0);
-        m_Move = false;
+        m_Move = false;       
 	}
 
-    private bool calculateDistance(Transform t1, Transform t2)
-    {
-        return ((t1.position.x-t2.position.x)*(t1.position.x-t2.position.x)+(t1.position.y-t2.position.y)*(t1.position.y-t2.position.y)) < distance*distance;
-	}
 
 
     public void Update()
@@ -109,27 +104,24 @@ public class MoveToPlayer : BasePrimitiveAction
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
     {     
-        targetTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
-        bossTransform = gameObject.transform;
         if(gameObject == null)
         {
-            return TaskStatus.FAILED;
+            return TaskStatus.FAILED;  
 		}
-        if (Vector3.Distance(targetTransform.position, bossTransform.position) > distance){
+        if(Vector3.Distance(gameObject.transform.position, target) > 6.27f) {
+            Move();           
             if (m_Move == true) {
                 m_Animator.SetBool("isMoving", true);   
 			}
-            Chase();                   
-        }        
+            return TaskStatus.RUNNING;
+        }
         else {
-            Stop();
+            Stop();            
             m_Animator.SetBool("isMoving", false);
-            Debug.Log("MoveToPlayer beendet");
-            return TaskStatus.COMPLETED;
-         }
-        return TaskStatus.RUNNING;
+            Debug.Log("MoveToCenter beendet");
+            return TaskStatus.COMPLETED;  
+		}
         
     } // OnUpdate
- 
-} // class MoveToPlayer
-//if (Vector3.Distance(targetTransform.position, bossTransform.position) > distance)
+    
+}
