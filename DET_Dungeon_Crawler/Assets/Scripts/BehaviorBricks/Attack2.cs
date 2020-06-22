@@ -5,11 +5,15 @@ using System.Collections.Generic;
     using Pada1.BBCore.Tasks;     // TaskStatus
     using Pada1.BBCore.Framework; // BasePrimitiveAction
  
+
+
+    //In Behaviorbricks klicke auf den Node (Attack2) und setze die Parameter auf Blackboard
     [Action("MyActions/Attack2")]
     [Help("Führt die erste Attacke vom Boss aus")]
     public class Attack2 : BasePrimitiveAction
     {          
         // Define the input parameter "bossSlash" (the prefab to be cloned).
+        /
         [InParam("bossSlash")]
         public GameObject bossSlash;
 
@@ -17,36 +21,39 @@ using System.Collections.Generic;
         [Help("The gameObject that will be moved, in this case the boss")]
         public GameObject gameObject;
 
+        //Ort an dem der Slash Prefab erstellt wird
         private Transform attack2Point;
         
-        private float timer;
-        private float wait;
+        //Attacke soll nach 0.5 Sekunden ausgeführt werden
+        private float timer = 0;
+        private float wait = 0.5f;
 
         //Für Animationen
         private Animator m_Animator;
         private bool m_Attack2;
-     
+        
+
         public override void OnStart()
         {             
-              Debug.Log("Attack2 startet");
+              Debug.Log("Attack2 startet");       
               attack2Point = gameObject.transform.Find("Attack2Pos");
-              timer = 0;
-              wait = 0.5f;
               m_Animator = gameObject.GetComponent<Animator>();
               m_Attack2 = true;
 		}
 
+       
         public void Attack()
         {
             m_Animator.SetBool("doesAttack2", true);         
             GameObject newBossSlash = GameObject.Instantiate(bossSlash, attack2Point.position, attack2Point.rotation) as GameObject;  
-            m_Animator.SetBool("doesAttack2", false);                       
+                                  
         }
 		
 
         // Main class method, invoked by the execution engine.
         public override TaskStatus OnUpdate()
         {   
+            //Ist der Boss tot/kein GameObject mehr vorhanden dann FAIL
             if(gameObject == null)
             {
                 return TaskStatus.FAILED;     
@@ -61,6 +68,7 @@ using System.Collections.Generic;
                     Attack();        
                     m_Attack2 = false;                  
                     Debug.Log("Attack2 beendet");   
+                    m_Animator.SetBool("doesAttack2", false);
                     return TaskStatus.COMPLETED;
                 }
 			}
