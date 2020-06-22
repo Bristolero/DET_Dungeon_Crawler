@@ -21,6 +21,7 @@ public class Taunt : BasePrimitiveAction
 
     public override void OnStart()
     {
+          Debug.Log("Taunt startet");
           m_Animator = gameObject.GetComponent<Animator>();
           m_Taunt = false;
 	}
@@ -51,6 +52,7 @@ public class Taunt : BasePrimitiveAction
 		}
         else { 
             m_Animator.SetBool("isTaunting", false);
+            Debug.Log("Taunt beendet");
             return TaskStatus.COMPLETED; 
         }
     } // OnUpdate

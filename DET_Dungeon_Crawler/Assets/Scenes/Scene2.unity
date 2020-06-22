@@ -3757,9 +3757,11 @@ MonoBehaviour:
     objectParams:
     - {fileID: 2043528953}
     - {fileID: 442655566}
+    - {fileID: 4444303415220752901, guid: 9ac35dae24fe044478394d178270856a, type: 3}
     objectParamsNames:
     - player
     - Boss
+    - bossSlash
     objectParamsLostDefaultValue: 
     layerMaskParams: []
     layerMaskParamsNames: []
@@ -12471,6 +12473,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2778935464896867402, guid: 1786e869c9f552e409ee6e43085bacd1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778935464896867402, guid: 1786e869c9f552e409ee6e43085bacd1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888590037849736146, guid: 1786e869c9f552e409ee6e43085bacd1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968121926795837456, guid: 1786e869c9f552e409ee6e43085bacd1,
+        type: 3}
+      propertyPath: m_Name
+      value: Attack2Pos
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968121926795837456, guid: 1786e869c9f552e409ee6e43085bacd1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Attack2
+      objectReference: {fileID: 0}
     - target: {fileID: 8007404459473983640, guid: 1786e869c9f552e409ee6e43085bacd1,
         type: 3}
       propertyPath: m_Name
@@ -12489,7 +12516,7 @@ PrefabInstance:
     - target: {fileID: 8007404459473983642, guid: 1786e869c9f552e409ee6e43085bacd1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.2670302
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8007404459473983642, guid: 1786e869c9f552e409ee6e43085bacd1,
         type: 3}

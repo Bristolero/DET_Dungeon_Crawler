@@ -16,7 +16,10 @@ MonoBehaviour:
   xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
     version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
     id=\"0\" guid=\"500e87f05a08b1143b3f3e800cd87f1a\" nextId=\"25\">\r\n      <root>\r\n       
-    <PrioritySelectorNode id=\"1\" />\r\n      </root>\r\n      <inputParams />\r\n     
+    <PrioritySelectorNode id=\"1\" />\r\n      </root>\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"bossSlash\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n          <entry name=\"GameObject\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
     <outputParams />\r\n      <localParams />\r\n    </BehaviorTree>\r\n    <PrioritySelectorNode
     id=\"1\">\r\n      <children>\r\n        <elem>\r\n          <GuardAndNode>\r\n           
     <guard>\r\n              <ConditionEvalNode id=\"20\" />\r\n            </guard>\r\n           
@@ -51,11 +54,14 @@ MonoBehaviour:
     />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode id=\"14\"
     action=\"MyActions/Attack2\">\r\n      <inputParams />\r\n      <outputParams
     />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode id=\"24\"
-    action=\"MyActions/Attack3\">\r\n      <inputParams />\r\n      <outputParams
-    />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode id=\"17\"
-    action=\"MyActions/RunAway\">\r\n      <inputParams />\r\n      <outputParams
-    />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode id=\"18\"
-    action=\"MyActions/SelfHeal\">\r\n      <inputParams />\r\n      <outputParams
+    action=\"MyActions/Attack3\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
+    <entry name=\"bossSlash\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    blackboard=\"bossSlash\" />\r\n          <entry name=\"GameObject\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"GameObject\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
+    <ActionNode id=\"17\" action=\"MyActions/RunAway\">\r\n      <inputParams />\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
+    id=\"18\" action=\"MyActions/SelfHeal\">\r\n      <inputParams />\r\n      <outputParams
     />\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n  <editorInfo>\r\n   
     <BehaviorTree id=\"0\" _name=\"Attack\" _description=\"\" _removeIfClosed=\"False\">\r\n     
     <_rootList>\r\n        <elem>\r\n          <PrioritySelectorNode id=\"1\" />\r\n       
@@ -111,7 +117,7 @@ MonoBehaviour:
     cardinality=\"-1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
     <SequenceNode id=\"16\" />\r\n          <RandomSelectorNode id=\"19\" />\r\n       
     </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ActionNode id=\"13\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"True\" position=\"799.5
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"799.5
     733.25\" name=\"MyActions/Attack1\" description=\"F\xFChrt die erste Attacke
     vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"13\" />\r\n          <RandomSelectorNode
@@ -137,7 +143,7 @@ MonoBehaviour:
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"18\" />\r\n         
     <SequenceNode id=\"16\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n 
     </editorInfo>\r\n</BehaviorBricks>"
-  zoom: 0.5
+  zoom: 0.8
   subslist:
   - {fileID: 11400000, guid: cefec543fe1d8774aa0b18d5ab374a84, type: 2}
   _guid: 500e87f05a08b1143b3f3e800cd87f1a
