@@ -1839,7 +1839,7 @@ PrefabInstance:
     - target: {fileID: 3105088089470416647, guid: 1fac72b3a15dc5c469c9d0ace7612304,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3105088089470416647, guid: 1fac72b3a15dc5c469c9d0ace7612304,
         type: 3}
@@ -3300,7 +3300,7 @@ PrefabInstance:
     - target: {fileID: 1736115529873663260, guid: bb03033754893ce448f1edcf16f458fc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1736115529873663260, guid: bb03033754893ce448f1edcf16f458fc,
         type: 3}
@@ -3758,10 +3758,12 @@ MonoBehaviour:
     - {fileID: 2043528953}
     - {fileID: 442655566}
     - {fileID: 4444303415220752901, guid: 9ac35dae24fe044478394d178270856a, type: 3}
+    - {fileID: 5415493209585292063, guid: 1598d4fe6ccb3dc46a76b2c95dd4be71, type: 3}
     objectParamsNames:
     - player
     - Boss
     - bossSlash
+    - bossSlash1
     objectParamsLostDefaultValue: 
     layerMaskParams: []
     layerMaskParamsNames: []
@@ -3811,6 +3813,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &442655572 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8007404459473983642, guid: 1786e869c9f552e409ee6e43085bacd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8007404458389665285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &450049197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8520,6 +8528,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 928ee3d80e77ec641a6d7be61f61778b, type: 3}
+--- !u!1 &1398913832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398913833}
+  m_Layer: 0
+  m_Name: Attack1Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1398913833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398913832}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 442655572}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1418174628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9531,7 +9569,7 @@ PrefabInstance:
     - target: {fileID: 1115293401295203097, guid: 33c33ae07a4d24d41ac75c19d545334e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1115293401295203097, guid: 33c33ae07a4d24d41ac75c19d545334e,
         type: 3}

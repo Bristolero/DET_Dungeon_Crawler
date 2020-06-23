@@ -13,7 +13,7 @@ using System.Collections.Generic;
     public class Attack2 : BasePrimitiveAction
     {          
         // Define the input parameter "bossSlash" (the prefab to be cloned).
-        /
+        
         [InParam("bossSlash")]
         public GameObject bossSlash;
 

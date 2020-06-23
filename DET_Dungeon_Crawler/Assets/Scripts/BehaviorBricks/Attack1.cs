@@ -8,29 +8,64 @@
     [Help("Führt die erste Attacke vom Boss aus")]
     public class Attack1 : BasePrimitiveAction
     {
-        // Define the input parameter "attack1Point".
-        [InParam("attack1Point")]
-        public Transform attack1Point;
- 
-        // Define the input parameter "bossSlash" (the prefab to be cloned).
-        [InParam("bossSlash")]
-        public GameObject bossSlash;
- 
-        // Main class method, invoked by the execution engine.
-        public override TaskStatus OnUpdate()
-        {
-        // Instantiate the bullet prefab.
-        GameObject newbossSlash = GameObject.Instantiate(
-                                    bossSlash, attack1Point.position,
-                                    attack1Point.rotation * bossSlash .transform.rotation
-                                ) as GameObject;
-        // Give it a velocity
-        if (bossSlash.GetComponent<Rigidbody>() == null)
-            // Safeguard test, although the rigid body should be provided by the
-            // prefab to set its weight.
-            bossSlash.AddComponent<Rigidbody>();
-        // The action is completed. We must inform the execution engine.
-        return TaskStatus.COMPLETED;
+        [InParam("GameObject")]
+        [Help("The gameObject that will be moved, in this case the boss")]
+        public GameObject gameObject;
 
-       } // OnUpdate     
-    } // class Attack1
+        //Ort an dem der Slash Prefab erstellt wird
+        private Transform attack1Point;
+
+        //Attacke soll nach 0.5 Sekunden ausgeführt werden
+        private float timer = 0;
+        private float wait = 0.5f;
+
+        //Für Animationen
+        private Animator m_Animator;
+        private bool m_Attack1;
+        // Define the input parameter "bossSlash" (the prefab to be cloned).
+        [InParam("bossSlash1")]
+        public GameObject bossSlash1;
+
+        public override void OnStart()
+        {
+        Debug.Log("Attack1 startet");
+        attack1Point = gameObject.transform.Find("Attack1Pos");
+        m_Animator = gameObject.GetComponent<Animator>();
+        m_Attack1 = true;
+    }
+
+
+    public void Attack()
+    {
+        m_Animator.SetBool("doesAttack1", true);
+        GameObject newBossSlash = GameObject.Instantiate(bossSlash1, attack1Point.position, attack1Point.rotation) as GameObject;
+
+    }
+
+
+    // Main class method, invoked by the execution engine.
+    public override TaskStatus OnUpdate()
+    {
+        //Ist der Boss tot/kein GameObject mehr vorhanden dann FAIL
+        if (gameObject == null)
+        {
+            return TaskStatus.FAILED;
+        }
+        if (m_Attack1 == true)
+        {
+            if (timer < wait)
+            {
+                timer = timer + Time.deltaTime;
+            }
+            else
+            {
+                Attack();
+                m_Attack1 = false;
+                Debug.Log("Attack1 beendet");
+                m_Animator.SetBool("doesAttack1", false);
+                return TaskStatus.COMPLETED;
+            }
+        }
+        return TaskStatus.RUNNING;
+    } // OnUpdate
+} // class Attack1

@@ -15,24 +15,26 @@ MonoBehaviour:
   brickName: Assets/BehaviorTree.asset
   xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
     version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
-    id=\"0\" guid=\"a2379b404671dba4cb98fd1005e861e2\" nextId=\"20\">\r\n      <root>\r\n       
+    id=\"0\" guid=\"a2379b404671dba4cb98fd1005e861e2\" nextId=\"21\">\r\n      <root>\r\n       
     <RepeatDecorator id=\"11\" />\r\n      </root>\r\n      <inputParams>\r\n       
     <inputValues>\r\n          <entry name=\"player\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"False\" />\r\n          <entry name=\"Boss\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"False\" />\r\n          <entry name=\"moveSpeed\" type=\"System.Single\"
     isBlackboard=\"False\" value=\"0\" />\r\n          <entry name=\"bossSlash\"
-    type=\"UnityEngine.GameObject\" isBlackboard=\"False\" />\r\n        </inputValues>\r\n     
-    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </BehaviorTree>\r\n   
-    <RepeatDecorator id=\"11\" loops=\"-1\" policy=\"ContinueWhenChildFails\">\r\n     
+    type=\"UnityEngine.GameObject\" isBlackboard=\"False\" />\r\n          <entry
+    name=\"bossSlash1\" type=\"UnityEngine.GameObject\" isBlackboard=\"False\" />\r\n       
+    </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n      <localParams
+    />\r\n    </BehaviorTree>\r\n    <RepeatDecorator id=\"11\" loops=\"-1\" policy=\"ContinueWhenChildFails\">\r\n     
     <child>\r\n        <SequenceNode id=\"6\" />\r\n      </child>\r\n      <inputParams
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </RepeatDecorator>\r\n   
     <SequenceNode id=\"6\">\r\n      <children>\r\n        <elem>\r\n          <ActionNode
     id=\"14\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"15\"
     />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"19\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <ActionNode id=\"16\" />\r\n        </elem>\r\n     
-    </children>\r\n      <inputParams />\r\n      <outputParams />\r\n      <localParams
-    />\r\n    </SequenceNode>\r\n    <ActionNode id=\"14\" action=\"MyActions/MoveToPlayer\">\r\n     
-    <inputParams>\r\n        <inputValues>\r\n          <entry name=\"target\" type=\"UnityEngine.GameObject\"
+    </elem>\r\n        <elem>\r\n          <ActionNode id=\"20\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <ActionNode id=\"16\" />\r\n        </elem>\r\n      </children>\r\n     
+    <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </SequenceNode>\r\n   
+    <ActionNode id=\"14\" action=\"MyActions/MoveToPlayer\">\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"target\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"True\" blackboard=\"player\" />\r\n          <entry name=\"GameObject\"
     type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Boss\" />\r\n         
     <entry name=\"moveSpeed\" type=\"System.Single\" isBlackboard=\"True\" blackboard=\"moveSpeed\"
@@ -48,53 +50,65 @@ MonoBehaviour:
     />\r\n          <entry name=\"GameObject\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
     blackboard=\"Boss\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
-    id=\"16\" action=\"MyActions/Taunt\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
+    id=\"20\" action=\"MyActions/Attack1\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
     <entry name=\"GameObject\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
-    blackboard=\"Boss\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
-    <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n 
-    <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"BehaviorTree\" _description=\"BehaviorTree
-    f\xFCr den Boss\" _removeIfClosed=\"False\">\r\n      <_rootList>\r\n       
-    <elem>\r\n          <SequenceNode id=\"6\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <RepeatDecorator id=\"11\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <ActionNode id=\"14\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
-    id=\"15\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"16\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"19\" />\r\n       
-    </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n         
+    blackboard=\"Boss\" />\r\n          <entry name=\"bossSlash1\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"bossSlash1\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
+    <ActionNode id=\"16\" action=\"MyActions/Taunt\">\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"GameObject\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"Boss\" />\r\n        </inputValues>\r\n     
+    </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n 
+    </runtimeInfo>\r\n  <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"BehaviorTree\"
+    _description=\"BehaviorTree f\xFCr den Boss\" _removeIfClosed=\"False\">\r\n     
+    <_rootList>\r\n        <elem>\r\n          <SequenceNode id=\"6\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <RepeatDecorator id=\"11\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ActionNode id=\"14\" />\r\n        </elem>\r\n       
+    <elem>\r\n          <ActionNode id=\"15\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"16\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
+    id=\"19\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"20\"
+    />\r\n        </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n         
     <SequenceNode id=\"6\" />\r\n          <ActionNode id=\"14\" />\r\n         
     <RepeatDecorator id=\"11\" />\r\n          <ActionNode id=\"15\" />\r\n         
-    <ActionNode id=\"16\" />\r\n          <ActionNode id=\"19\" />\r\n        </nodes>\r\n     
-    </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatDecorator id=\"11\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"661 149.5\"
-    name=\"Repeat\" description=\"Repeats the execution of its child node\" cardinality=\"1\"
-    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <RepeatDecorator
-    id=\"11\" />\r\n        </data>\r\n      </_data>\r\n    </RepeatDecorator>\r\n   
-    <SequenceNode id=\"6\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"633 359.5\" name=\"Sequence\" description=\"Executes all its children
-    in sequence until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
+    <ActionNode id=\"16\" />\r\n          <ActionNode id=\"19\" />\r\n          <ActionNode
+    id=\"20\" />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n   
+    <RepeatDecorator id=\"11\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"902.4288 194.1072\" name=\"Repeat\" description=\"Repeats
+    the execution of its child node\" cardinality=\"1\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <RepeatDecorator id=\"11\" />\r\n       
+    </data>\r\n      </_data>\r\n    </RepeatDecorator>\r\n    <SequenceNode id=\"6\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"874.4287
+    404.107\" name=\"Sequence\" description=\"Executes all its children in sequence
+    until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"6\" />\r\n         
     <RepeatDecorator id=\"11\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
     <ActionNode id=\"14\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"81 667.5\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt den
-    Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
+    position=\"322.4285 712.1071\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt
+    den Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"14\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"15\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"363 670.5\" name=\"MyActions/MoveToCenter\" description=\"Bewegt den
-    Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
+    position=\"604.4286 715.1071\" name=\"MyActions/MoveToCenter\" description=\"Bewegt
+    den Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"15\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"19\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"646 665\" name=\"MyActions/Attack2\" description=\"F\xFChrt die erste
-    Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
-    id=\"0\" />\r\n          <ActionNode id=\"19\" />\r\n          <SequenceNode
-    id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"16\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
-    position=\"885 668.5\" name=\"MyActions/Taunt\" description=\"Der Boss Taunted
+    <ActionNode id=\"19\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    position=\"887.4288 709.6071\" name=\"MyActions/Attack2\" description=\"F\xFChrt
+    die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"19\" />\r\n         
+    <SequenceNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
+    <ActionNode id=\"20\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"1054.286 702.8572\" name=\"MyActions/Attack1\" description=\"F\xFChrt
+    die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"20\" />\r\n         
+    <SequenceNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
+    <ActionNode id=\"16\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"1235 697.3928\" name=\"MyActions/Taunt\" description=\"Der Boss Taunted
     bevor er einen starken Angriff macht\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"16\" />\r\n         
     <SequenceNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n 
     </editorInfo>\r\n</BehaviorBricks>"
-  zoom: 1
+  zoom: 0.7
   subslist:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: 500e87f05a08b1143b3f3e800cd87f1a, type: 2}
