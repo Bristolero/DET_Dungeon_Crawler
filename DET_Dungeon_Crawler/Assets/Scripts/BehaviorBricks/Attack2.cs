@@ -13,7 +13,7 @@ using System.Collections.Generic;
     public class Attack2 : BasePrimitiveAction
     {          
         // Define the input parameter "bossSlash" (the prefab to be cloned).
-        /
+
         [InParam("bossSlash")]
         public GameObject bossSlash;
 
@@ -24,9 +24,9 @@ using System.Collections.Generic;
         //Ort an dem der Slash Prefab erstellt wird
         private Transform attack2Point;
         
-        //Attacke soll nach 0.5 Sekunden ausgeführt werden
+        //Attacke soll nach x Sekunden ausgeführt werden
         private float timer = 0;
-        private float wait = 0.5f;
+        private float wait = 0.4f;
 
         //Für Animationen
         private Animator m_Animator;
@@ -39,14 +39,13 @@ using System.Collections.Generic;
               attack2Point = gameObject.transform.Find("Attack2Pos");
               m_Animator = gameObject.GetComponent<Animator>();
               m_Attack2 = true;
+              m_Animator.SetTrigger("Attack2");
 		}
 
        
         public void Attack()
-        {
-            m_Animator.SetBool("doesAttack2", true);         
-            GameObject newBossSlash = GameObject.Instantiate(bossSlash, attack2Point.position, attack2Point.rotation) as GameObject;  
-                                  
+        {        
+            GameObject newBossSlash = GameObject.Instantiate(bossSlash, attack2Point.position, attack2Point.rotation) as GameObject;                                  
         }
 		
 
@@ -57,7 +56,7 @@ using System.Collections.Generic;
             if(gameObject == null)
             {
                 return TaskStatus.FAILED;     
-			}
+			}                     
             if(m_Attack2 == true)
             {
                 if(timer < wait)
@@ -67,8 +66,8 @@ using System.Collections.Generic;
                 else {
                     Attack();        
                     m_Attack2 = false;                  
+                    m_Animator.ResetTrigger("Attack2");
                     Debug.Log("Attack2 beendet");   
-                    m_Animator.SetBool("doesAttack2", false);
                     return TaskStatus.COMPLETED;
                 }
 			}

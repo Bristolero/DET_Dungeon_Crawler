@@ -101,14 +101,14 @@ public class MoveToCenter : BasePrimitiveAction
         if(Vector3.Distance(gameObject.transform.position, target) > 0.1f) {
             Move();           
             if (m_Move == true) {
-                m_Animator.SetBool("isMoving", true);   
+                m_Animator.SetTrigger("Move");   
 			}
             return TaskStatus.RUNNING;
         }
         else {
             Stop();            
-            m_Animator.SetBool("isMoving", false);
             Debug.Log("MoveToCenter beendet");
+            m_Animator.ResetTrigger("Move");
             return TaskStatus.COMPLETED;  
 		}
         

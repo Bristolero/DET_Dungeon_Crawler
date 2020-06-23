@@ -103,13 +103,13 @@ public class MoveToPlayer : BasePrimitiveAction
 		}
         if (Vector3.Distance(target.position, boss.position) > distance){
             if (m_Move == true) {
-                m_Animator.SetBool("isMoving", true);   
+                m_Animator.SetTrigger("Move");  
 			}
             Chase();                   
         }        
         else {
             Stop();
-            m_Animator.SetBool("isMoving", false);
+            m_Animator.ResetTrigger("Move");
             Debug.Log("MoveToPlayer beendet");
             return TaskStatus.COMPLETED;
          }

@@ -31,7 +31,7 @@ public class Taunt : BasePrimitiveAction
         m_Taunt = true;
         if(m_Taunt == true)
         {
-            m_Animator.SetBool("isTaunting", true);     
+            m_Animator.SetTrigger("Taunt");
 	    }
 	}
 
@@ -51,7 +51,7 @@ public class Taunt : BasePrimitiveAction
             return TaskStatus.RUNNING;
 		}
         else { 
-            m_Animator.SetBool("isTaunting", false);
+            m_Animator.ResetTrigger("Taunt");
             Debug.Log("Taunt beendet");
             return TaskStatus.COMPLETED; 
         }
