@@ -19,6 +19,7 @@ MonoBehaviour:
     <PrioritySelectorNode id=\"1\" />\r\n      </root>\r\n      <inputParams>\r\n       
     <inputValues>\r\n          <entry name=\"bossSlash1\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"False\" />\r\n          <entry name=\"GameObject\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n          <entry name=\"Boss\" type=\"UnityEngine.GameObject\"
     isBlackboard=\"False\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
     <outputParams />\r\n      <localParams />\r\n    </BehaviorTree>\r\n    <PrioritySelectorNode
     id=\"1\">\r\n      <children>\r\n        <elem>\r\n          <GuardAndNode>\r\n           
@@ -67,30 +68,34 @@ MonoBehaviour:
     </inputParams>\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n   
     <ActionNode id=\"17\" action=\"MyActions/RunAway\">\r\n      <inputParams />\r\n     
     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
-    id=\"18\" action=\"MyActions/SelfHeal\">\r\n      <inputParams />\r\n      <outputParams
-    />\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n  <editorInfo>\r\n   
-    <BehaviorTree id=\"0\" _name=\"Attack\" _description=\"\" _removeIfClosed=\"False\">\r\n     
-    <_rootList>\r\n        <elem>\r\n          <PrioritySelectorNode id=\"1\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <ActionNode id=\"13\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <ActionNode id=\"14\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <SequenceNode id=\"16\" />\r\n        </elem>\r\n        <elem>\r\n         
-    <ActionNode id=\"17\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
-    id=\"18\" />\r\n        </elem>\r\n        <elem>\r\n          <RandomSelectorNode
-    id=\"19\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
-    id=\"20\" />\r\n        </elem>\r\n        <elem>\r\n          <RandomSelectorNode
-    id=\"21\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
-    id=\"22\" />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode
-    id=\"23\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"24\"
-    />\r\n        </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n         
-    <PrioritySelectorNode id=\"1\" />\r\n          <ActionNode id=\"13\" />\r\n         
-    <ActionNode id=\"14\" />\r\n          <RandomSelectorNode id=\"21\" />\r\n         
-    <ConditionEvalNode id=\"22\" />\r\n          <RandomSelectorNode id=\"19\" />\r\n         
-    <ConditionEvalNode id=\"20\" />\r\n          <SequenceNode id=\"23\" />\r\n         
-    <SequenceNode id=\"16\" />\r\n          <ActionNode id=\"17\" />\r\n         
-    <ActionNode id=\"18\" />\r\n          <ActionNode id=\"24\" />\r\n        </nodes>\r\n     
-    </_nodes>\r\n    </BehaviorTree>\r\n    <PrioritySelectorNode id=\"1\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"566.8338
-    -237.7498\" name=\"Priority Selector\" description=\"\" cardinality=\"1\" hasParent=\"False\">\r\n         
+    id=\"18\" action=\"MyActions/SelfHeal\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
+    <entry name=\"GameObject\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    blackboard=\"Boss\" />\r\n          <entry name=\"hp\" type=\"System.Int32\"
+    isBlackboard=\"False\" value=\"100\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n 
+    <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"Attack\" _description=\"\"
+    _removeIfClosed=\"False\">\r\n      <_rootList>\r\n        <elem>\r\n         
+    <PrioritySelectorNode id=\"1\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"13\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode
+    id=\"14\" />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode
+    id=\"16\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"17\"
+    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"18\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <RandomSelectorNode id=\"19\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"20\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <RandomSelectorNode id=\"21\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ConditionEvalNode id=\"22\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <SequenceNode id=\"23\" />\r\n       
+    </elem>\r\n        <elem>\r\n          <ActionNode id=\"24\" />\r\n        </elem>\r\n     
+    </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n          <PrioritySelectorNode
+    id=\"1\" />\r\n          <ActionNode id=\"13\" />\r\n          <ActionNode id=\"14\"
+    />\r\n          <RandomSelectorNode id=\"21\" />\r\n          <ConditionEvalNode
+    id=\"22\" />\r\n          <RandomSelectorNode id=\"19\" />\r\n          <ConditionEvalNode
+    id=\"20\" />\r\n          <SequenceNode id=\"23\" />\r\n          <SequenceNode
+    id=\"16\" />\r\n          <ActionNode id=\"17\" />\r\n          <ActionNode id=\"18\"
+    />\r\n          <ActionNode id=\"24\" />\r\n        </nodes>\r\n      </_nodes>\r\n   
+    </BehaviorTree>\r\n    <PrioritySelectorNode id=\"1\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"566.8338 -237.7498\" name=\"Priority
+    Selector\" description=\"\" cardinality=\"1\" hasParent=\"False\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode id=\"1\" />\r\n       
     </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
     id=\"20\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"

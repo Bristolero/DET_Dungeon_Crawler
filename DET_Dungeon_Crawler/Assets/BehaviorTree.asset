@@ -94,7 +94,7 @@ MonoBehaviour:
     den Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"14\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"21\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    <ActionNode id=\"21\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
     position=\"552.8571 720.0001\" name=\"MyActions/RunAway\" description=\"F\xFChrt
     die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"21\" />\r\n         
@@ -105,7 +105,7 @@ MonoBehaviour:
     id=\"0\" />\r\n          <ActionNode id=\"15\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"19\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"887.4288 709.6071\" name=\"MyActions/Attack2\" description=\"F\xFChrt
+    position=\"904.5717 716.7501\" name=\"MyActions/Attack2\" description=\"F\xFChrt
     die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"19\" />\r\n         
     <SequenceNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
