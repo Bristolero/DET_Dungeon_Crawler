@@ -72,7 +72,7 @@ MonoBehaviour:
     id=\"11\" />\r\n          <ActionNode id=\"15\" />\r\n          <ActionNode id=\"16\"
     />\r\n          <ActionNode id=\"21\" />\r\n          <ActionNode id=\"20\" />\r\n       
     </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatDecorator id=\"11\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"661 149.5\"
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"643 145.5\"
     name=\"Repeat\" description=\"Repeats the execution of its child node\" cardinality=\"1\"
     hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <RepeatDecorator
     id=\"11\" />\r\n        </data>\r\n      </_data>\r\n    </RepeatDecorator>\r\n   
@@ -82,27 +82,27 @@ MonoBehaviour:
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"6\" />\r\n         
     <RepeatDecorator id=\"11\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
     <ActionNode id=\"14\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"35 666.5\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt den
+    position=\"105 666.5\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt den
     Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"14\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"20\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
-    position=\"313 674\" name=\"MyActions/Attack2\" description=\"F\xFChrt die erste
+    <ActionNode id=\"20\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"384 667\" name=\"MyActions/Attack2\" description=\"F\xFChrt die erste
     Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"20\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"15\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"506 660.5\" name=\"MyActions/MoveToCenter\" description=\"Bewegt den
+    position=\"610 667.5\" name=\"MyActions/MoveToCenter\" description=\"Bewegt den
     Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"15\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"16\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"753 674.5\" name=\"MyActions/Taunt\" description=\"Der Boss Taunted
+    position=\"854 663.5\" name=\"MyActions/Taunt\" description=\"Der Boss Taunted
     bevor er einen starken Angriff macht\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"16\" />\r\n         
     <SequenceNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"21\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"1037 663\" name=\"MyActions/Attack3\" description=\"F\xFChrt die dritte
+    <ActionNode id=\"21\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    position=\"1061 663\" name=\"MyActions/Attack3\" description=\"F\xFChrt die dritte
     Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"21\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n  </editorInfo>\r\n</BehaviorBricks>"
