@@ -12,6 +12,7 @@ TagManager:
   - Connector
   - Key
   - Attack2
+  - Boss
   layers:
   - Default
   - TransparentFX
