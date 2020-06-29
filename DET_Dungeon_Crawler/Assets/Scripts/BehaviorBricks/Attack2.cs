@@ -40,8 +40,16 @@ using System.Collections.Generic;
               m_Animator = gameObject.GetComponent<Animator>();
               m_Attack2 = true;
               m_Animator.SetTrigger("Attack2");
-
 		}
+
+       
+        public void Attack()
+        {
+            m_Animator.SetBool("doesAttack2", true);         
+            GameObject newBossSlash = GameObject.Instantiate(bossSlash, attack2Point.position, attack2Point.rotation) as GameObject;  
+            setLayerToDefault(newBossSlash);                     
+        }
+		
 
         private void setLayerToDefault(GameObject g)
         {
@@ -49,15 +57,6 @@ using System.Collections.Generic;
             sprite.sortingOrder = -10;
             sprite.sortingLayerName = "Default";
 		}
-
-
-        public void Attack()
-        {
-            m_Animator.SetBool("doesAttack2", true);         
-            GameObject newBossSlash = GameObject.Instantiate(bossSlash, attack2Point.position, attack2Point.rotation) as GameObject;  
-            setLayerToDefault(newBossSlash);                      
-        }
-		
 
         // Main class method, invoked by the execution engine.
         public override TaskStatus OnUpdate()
