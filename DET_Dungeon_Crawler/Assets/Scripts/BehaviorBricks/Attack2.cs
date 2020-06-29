@@ -39,23 +39,14 @@ using System.Collections.Generic;
               attack2Point = gameObject.transform.Find("Attack2Pos");
               m_Animator = gameObject.GetComponent<Animator>();
               m_Attack2 = true;
-              m_Animator.SetTrigger("Attack2");
-
 		}
 
-        private void setLayerToDefault(GameObject g)
-        {
-            SpriteRenderer sprite = g.GetComponent<SpriteRenderer>();
-            sprite.sortingOrder = -10;
-            sprite.sortingLayerName = "Default";
-		}
-
-
+       
         public void Attack()
         {
             m_Animator.SetBool("doesAttack2", true);         
             GameObject newBossSlash = GameObject.Instantiate(bossSlash, attack2Point.position, attack2Point.rotation) as GameObject;  
-            setLayerToDefault(newBossSlash);                      
+                                  
         }
 		
 
@@ -78,7 +69,6 @@ using System.Collections.Generic;
                     m_Attack2 = false;                  
                     Debug.Log("Attack2 beendet");   
                     m_Animator.SetBool("doesAttack2", false);
-                    m_Animator.ResetTrigger("Attack2");
                     return TaskStatus.COMPLETED;
                 }
 			}

@@ -21,10 +21,14 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
         private Transform attack3Point1;
         private Transform attack3Point2;
         private Transform attack3Point3;
+        private Transform attack3Point4;
+        private Transform attack3Point5;
+        private Transform attack3Point6;
+        private Transform attack3Point7;
+        private Transform attack3Point8;
         
         private float timer = 0;
         private float wait = 0.2f;
-
 
         private float testtimer;
 
@@ -41,24 +45,13 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
               m_Animator = gameObject.GetComponent<Animator>();
               m_Attack3 = true;
               m_Animator.SetTrigger("Attack3");
-
-		}
-
-        private void setLayerToDefault(GameObject g)
-        {
-            SpriteRenderer sprite = g.GetComponent<SpriteRenderer>();
-            sprite.sortingOrder = -10;
-            sprite.sortingLayerName = "Default";
 		}
 
         public void Attack()
         {           
-            GameObject newBossSlash1 = GameObject.Instantiate(bossSlash, attack3Point1.position, attack3Point1.rotation) as GameObject; 
-            setLayerToDefault(newBossSlash1);
-            GameObject newBossSlash2 = GameObject.Instantiate(bossSlash, attack3Point2.position, attack3Point2.rotation) as GameObject;
-            setLayerToDefault(newBossSlash2);
-            GameObject newBossSlash3 = GameObject.Instantiate(bossSlash, attack3Point3.position, attack3Point3.rotation) as GameObject;    
-            setLayerToDefault(newBossSlash3);
+            GameObject newBossSlash1 = GameObject.Instantiate(bossSlash, attack3Point1.position, attack3Point1.rotation) as GameObject;  
+            GameObject newBossSlash2 = GameObject.Instantiate(bossSlash, attack3Point2.position, attack3Point2.rotation) as GameObject;  
+            GameObject newBossSlash3 = GameObject.Instantiate(bossSlash, attack3Point3.position, attack3Point3.rotation) as GameObject;           
         }
 		
 
