@@ -21,11 +21,6 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
         private Transform attack3Point1;
         private Transform attack3Point2;
         private Transform attack3Point3;
-        private Transform attack3Point4;
-        private Transform attack3Point5;
-        private Transform attack3Point6;
-        private Transform attack3Point7;
-        private Transform attack3Point8;
         
         private float timer = 0;
         private float wait = 0.2f;

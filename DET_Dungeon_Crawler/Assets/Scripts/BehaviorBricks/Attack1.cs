@@ -26,22 +26,28 @@
         [InParam("bossSlash1")]
         public GameObject bossSlash1;
 
-        public override void OnStart()
-        {
+    public override void OnStart()
+    {
         Debug.Log("Attack1 startet");
         attack1Point = gameObject.transform.Find("Attack1Pos");
         m_Animator = gameObject.GetComponent<Animator>();
         m_Attack1 = true;
+        m_Animator.SetTrigger("Attack1");
     }
 
 
     public void Attack()
     {
-        m_Animator.SetBool("doesAttack1", true);
         GameObject newBossSlash = GameObject.Instantiate(bossSlash1, attack1Point.position, attack1Point.rotation) as GameObject;
-
+        setLayerToDefault(newBossSlash);
     }
 
+    private void setLayerToDefault(GameObject g)
+    {
+        SpriteRenderer sprite = g.GetComponent<SpriteRenderer>();
+        sprite.sortingOrder = -10;
+        sprite.sortingLayerName = "Default";
+    }
 
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
@@ -62,7 +68,7 @@
                 Attack();
                 m_Attack1 = false;
                 Debug.Log("Attack1 beendet");
-                m_Animator.SetBool("doesAttack1", false);
+                m_Animator.ResetTrigger("Attack1");
                 return TaskStatus.COMPLETED;
             }
         }

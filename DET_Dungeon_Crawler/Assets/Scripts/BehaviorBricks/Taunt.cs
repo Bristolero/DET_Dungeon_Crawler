@@ -11,7 +11,7 @@ using Pada1.BBCore.Framework; // BasePrimitiveAction
 public class Taunt : BasePrimitiveAction
 {
     private float timer = 0;
-    private float maxTime = 3;
+    private float maxTime = 1.5f;
     private Animator m_Animator;
     private bool m_Taunt;
     

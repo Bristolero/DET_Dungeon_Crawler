@@ -15,7 +15,7 @@ using System.Collections.Generic;
         // Define the input parameter "bossSlash" (the prefab to be cloned).
         
         [InParam("bossSlash")]
-        public GameObject bossSlash;
+        public GameObject bossSlash1;
 
         [InParam("GameObject")]
         [Help("The gameObject that will be moved, in this case the boss")]
@@ -46,7 +46,7 @@ using System.Collections.Generic;
         public void Attack()
         {
             m_Animator.SetBool("doesAttack2", true);         
-            GameObject newBossSlash = GameObject.Instantiate(bossSlash, attack2Point.position, attack2Point.rotation) as GameObject;  
+            GameObject newBossSlash = GameObject.Instantiate(bossSlash1, attack2Point.position, attack2Point.rotation) as GameObject;  
             setLayerToDefault(newBossSlash);                     
         }
 		
