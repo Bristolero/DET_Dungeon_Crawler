@@ -96,7 +96,7 @@ public class MoveToPlayer : BasePrimitiveAction
     {     
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
         boss = gameObject.transform;
-        Debug.Log(Vector3.Distance(target.position, boss.position));
+        //Debug.Log(Vector3.Distance(target.position, boss.position));
         if(gameObject == null)
         {
             return TaskStatus.FAILED;

@@ -29,7 +29,7 @@ MonoBehaviour:
     <child>\r\n              <RandomSelectorNode id=\"21\" />\r\n            </child>\r\n         
     </GuardAndNode>\r\n        </elem>\r\n      </children>\r\n      <inputParams
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </PrioritySelectorNode>\r\n   
-    <ConditionEvalNode id=\"20\" policy=\"ATOMIC_CHECK\" name=\"Basic/CheckBool\">\r\n     
+    <ConditionEvalNode id=\"20\" policy=\"ATOMIC_CHECK\" name=\"AlwaysTrue\">\r\n     
     <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </ConditionEvalNode>\r\n   
     <RandomSelectorNode id=\"19\">\r\n      <probs>\r\n        <elem>1</elem>\r\n       
     <elem>1</elem>\r\n        <elem>1</elem>\r\n      </probs>\r\n      <children>\r\n       
@@ -88,6 +88,7 @@ MonoBehaviour:
     <BehaviorTree id=\"0\" />\r\n          <PrioritySelectorNode id=\"1\" />\r\n       
     </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode
     id=\"20\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+<<<<<<< Updated upstream
     position=\"355.5 482.25\" name=\"Basic/CheckBool\" description=\"Eval\" cardinality=\"1\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
     id=\"20\" />\r\n          <PrioritySelectorNode id=\"1\" />\r\n        </data>\r\n     
@@ -109,6 +110,29 @@ MonoBehaviour:
     <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"139.5
     724.25\" name=\"Sequence\" description=\"Executes all its children in sequence
     until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
+=======
+    position=\"375.3333 418.9167\" name=\"AlwaysTrue\" description=\"Eval\" cardinality=\"1\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
+    id=\"20\" />\r\n          <PrioritySelectorNode id=\"1\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ConditionEvalNode>\r\n    <RandomSelectorNode id=\"19\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"375.3333
+    418.9167\" name=\"Random Selector\" description=\"Selects randomly one of its
+    children\" cardinality=\"-1\" hasParent=\"False\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <RandomSelectorNode id=\"19\" />\r\n        </data>\r\n     
+    </_data>\r\n    </RandomSelectorNode>\r\n    <ConditionEvalNode id=\"22\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"916.3336
+    425.9167\" name=\"AlwaysTrue\" description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode id=\"22\" />\r\n         
+    <PrioritySelectorNode id=\"1\" />\r\n        </data>\r\n      </_data>\r\n   
+    </ConditionEvalNode>\r\n    <RandomSelectorNode id=\"21\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"916.3336 425.9167\" name=\"Random
+    Selector\" description=\"Selects randomly one of its children\" cardinality=\"-1\"
+    hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n          <RandomSelectorNode
+    id=\"21\" />\r\n        </data>\r\n      </_data>\r\n    </RandomSelectorNode>\r\n   
+    <SequenceNode id=\"23\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"159.3333 660.9166\" name=\"Sequence\" description=\"Executes all its
+    children in sequence until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
+>>>>>>> Stashed changes
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"23\" />\r\n         
     <RandomSelectorNode id=\"19\" />\r\n        </data>\r\n      </_data>\r\n   
     </SequenceNode>\r\n    <SequenceNode id=\"16\">\r\n      <_data>\r\n        <data
