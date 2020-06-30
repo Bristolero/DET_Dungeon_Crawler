@@ -10,7 +10,7 @@ public class Boss : MonoBehaviour
 
     public bool isLow { get; private set; }
 
-    private int hpTotal;
+    public int hpTotal;
     private float timer = 0f;
     private float waitTimer = 0.2f;
 
@@ -45,5 +45,10 @@ public class Boss : MonoBehaviour
         {
             GameObject.Destroy(this.gameObject);
         }      
+    }
+
+    public void Sethp(int selfhp)
+    {
+        hp = selfhp;
     }
 }

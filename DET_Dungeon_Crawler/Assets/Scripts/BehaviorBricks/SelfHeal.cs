@@ -19,22 +19,41 @@
     private int hp;
     private bool m_heal;
     private float timeVal = 0;
+    private int hpTotal;
 
 
     public override void OnStart()
     {
+        Debug.Log("heal startet");
         m_heal = true;
-        hp=gameObject.GetComponent<Boss>().hp;
+        hp = gameObject.GetComponent<Boss>().hp;
+        hpTotal = gameObject.GetComponent<Boss>().hpTotal;
+
     }
     private void heal()
     {
-        if (timeVal < 6f)
+        if(hp < hpTotal && hp > hpTotal - 100)
         {
-            hp = hp + 100;
-            timeVal += Time.deltaTime;
+            if (timeVal < 6f)
+            {
+                hp = hpTotal ;
+                timeVal += Time.deltaTime;
+                gameObject.SendMessage("Sethp", hp, SendMessageOptions.DontRequireReceiver);
+            }
+        }
+        else if(hp < hpTotal - 100)
+        {
+            if (timeVal < 6f)
+            {
+                hp += 100;
+                timeVal += Time.deltaTime;
+                gameObject.SendMessage("Sethp", hp, SendMessageOptions.DontRequireReceiver);
+            }
         }
         
+        
         m_heal = false;
+        Debug.Log("heal end");
     }
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
@@ -47,7 +66,11 @@
         {
             heal();
         }
-        return TaskStatus.COMPLETED;
+        if(m_heal == false)
+        {
+            return TaskStatus.COMPLETED;
+        }
+        return TaskStatus.RUNNING;
     } // OnUpdate
  
     } // class SelfHeal
