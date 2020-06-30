@@ -34,13 +34,13 @@ public class Boss : MonoBehaviour
             timer = timer + Time.deltaTime;  
 		}
         m_Animator.ResetTrigger("Attacked1");
-
+        hpSlider.value = (float)hp / hpTotal;
     }
     void TakeDamage(int damage)
     {
         if (hp <= 0) return;       
         hp -= damage;
-        hpSlider.value = (float)hp / hpTotal;
+        
         if (hp <= 0)
         {
             GameObject.Destroy(this.gameObject);

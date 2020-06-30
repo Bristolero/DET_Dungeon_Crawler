@@ -28,9 +28,8 @@ MonoBehaviour:
     <child>\r\n        <SequenceNode id=\"6\" />\r\n      </child>\r\n      <inputParams
     />\r\n      <outputParams />\r\n      <localParams />\r\n    </RepeatDecorator>\r\n   
     <SequenceNode id=\"6\">\r\n      <children>\r\n        <elem>\r\n          <ActionNode
-    id=\"14\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"46\"
-    />\r\n        </elem>\r\n        <elem>\r\n          <PrioritySelectorNode id=\"25\"
-    />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
+    id=\"14\" />\r\n        </elem>\r\n        <elem>\r\n          <PrioritySelectorNode
+    id=\"25\" />\r\n        </elem>\r\n      </children>\r\n      <inputParams />\r\n     
     <outputParams />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ActionNode
     id=\"14\" action=\"MyActions/MoveToPlayer\">\r\n      <inputParams>\r\n       
     <inputValues>\r\n          <entry name=\"target\" type=\"UnityEngine.GameObject\"
@@ -38,13 +37,9 @@ MonoBehaviour:
     type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Boss\" />\r\n         
     <entry name=\"moveSpeed\" type=\"System.Single\" isBlackboard=\"True\" blackboard=\"moveSpeed\"
     />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n     
-    <localParams />\r\n    </ActionNode>\r\n    <ActionNode id=\"46\" action=\"MyActions/SelfHeal\">\r\n     
-    <inputParams>\r\n        <inputValues>\r\n          <entry name=\"GameObject\"
-    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"Boss\" />\r\n       
-    </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n      <localParams
-    />\r\n    </ActionNode>\r\n    <PrioritySelectorNode id=\"25\">\r\n      <children>\r\n       
-    <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n              <ConditionEvalNode
-    id=\"30\" />\r\n            </guard>\r\n            <child>\r\n             
+    <localParams />\r\n    </ActionNode>\r\n    <PrioritySelectorNode id=\"25\">\r\n     
+    <children>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n             
+    <ConditionEvalNode id=\"30\" />\r\n            </guard>\r\n            <child>\r\n             
     <RandomSelectorNode id=\"29\" />\r\n            </child>\r\n          </GuardAndNode>\r\n       
     </elem>\r\n        <elem>\r\n          <GuardAndNode>\r\n            <guard>\r\n             
     <ConditionEvalNode id=\"40\" />\r\n            </guard>\r\n            <child>\r\n             
@@ -132,112 +127,105 @@ MonoBehaviour:
     id=\"39\" />\r\n        </elem>\r\n        <elem>\r\n          <ConditionEvalNode
     id=\"40\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"41\"
     />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"42\" />\r\n       
-    </elem>\r\n        <elem>\r\n          <ActionNode id=\"44\" />\r\n        </elem>\r\n       
-    <elem>\r\n          <ActionNode id=\"46\" />\r\n        </elem>\r\n      </_rootList>\r\n     
-    <_nodes>\r\n        <nodes>\r\n          <SequenceNode id=\"6\" />\r\n         
-    <ActionNode id=\"14\" />\r\n          <RepeatDecorator id=\"11\" />\r\n         
-    <PrioritySelectorNode id=\"25\" />\r\n          <RandomSelectorNode id=\"29\"
-    />\r\n          <ConditionEvalNode id=\"30\" />\r\n          <ActionNode id=\"28\"
-    />\r\n          <SequenceNode id=\"32\" />\r\n          <ActionNode id=\"33\"
-    />\r\n          <SequenceNode id=\"35\" />\r\n          <ActionNode id=\"36\"
-    />\r\n          <ActionNode id=\"37\" />\r\n          <ActionNode id=\"38\" />\r\n         
-    <SequenceNode id=\"39\" />\r\n          <ConditionEvalNode id=\"40\" />\r\n         
-    <ActionNode id=\"41\" />\r\n          <ActionNode id=\"42\" />\r\n          <ActionNode
-    id=\"44\" />\r\n          <ActionNode id=\"46\" />\r\n        </nodes>\r\n     
-    </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatDecorator id=\"11\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"796.2128
-    -75.83704\" name=\"Repeat\" description=\"Repeats the execution of its child
-    node\" cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\"
-    />\r\n          <RepeatDecorator id=\"11\" />\r\n        </data>\r\n      </_data>\r\n   
-    </RepeatDecorator>\r\n    <SequenceNode id=\"6\">\r\n      <_data>\r\n       
-    <data breakpoint=\"0\" selected=\"False\" position=\"788.2128 159.1624\" name=\"Sequence\"
-    description=\"Executes all its children in sequence until all of them are successful\"
-    cardinality=\"-1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
-    <SequenceNode id=\"6\" />\r\n          <RepeatDecorator id=\"11\" />\r\n       
-    </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ActionNode id=\"14\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"319.0721
-    520.2571\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt den Boss zum
-    Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\"
-    />\r\n          <ActionNode id=\"14\" />\r\n          <SequenceNode id=\"6\"
-    />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ActionNode
-    id=\"46\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
-    position=\"713.75 556.25\" name=\"MyActions/SelfHeal\" description=\"F\xFChrt
-    die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
-    <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"46\" />\r\n         
-    <SequenceNode id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
+    </elem>\r\n        <elem>\r\n          <ActionNode id=\"44\" />\r\n        </elem>\r\n     
+    </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n          <SequenceNode
+    id=\"6\" />\r\n          <ActionNode id=\"14\" />\r\n          <RepeatDecorator
+    id=\"11\" />\r\n          <PrioritySelectorNode id=\"25\" />\r\n          <RandomSelectorNode
+    id=\"29\" />\r\n          <ConditionEvalNode id=\"30\" />\r\n          <ActionNode
+    id=\"28\" />\r\n          <SequenceNode id=\"32\" />\r\n          <ActionNode
+    id=\"33\" />\r\n          <SequenceNode id=\"35\" />\r\n          <ActionNode
+    id=\"36\" />\r\n          <ActionNode id=\"37\" />\r\n          <ActionNode id=\"38\"
+    />\r\n          <SequenceNode id=\"39\" />\r\n          <ConditionEvalNode id=\"40\"
+    />\r\n          <ActionNode id=\"41\" />\r\n          <ActionNode id=\"42\" />\r\n         
+    <ActionNode id=\"44\" />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n   
+    <RepeatDecorator id=\"11\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"224.9628 -689.587\" name=\"Repeat\" description=\"Repeats
+    the execution of its child node\" cardinality=\"1\" hasParent=\"False\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <RepeatDecorator id=\"11\" />\r\n       
+    </data>\r\n      </_data>\r\n    </RepeatDecorator>\r\n    <SequenceNode id=\"6\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"216.9628
+    -454.5876\" name=\"Sequence\" description=\"Executes all its children in sequence
+    until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"6\" />\r\n         
+    <RepeatDecorator id=\"11\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
+    <ActionNode id=\"14\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"-252.1779 -93.49292\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt
+    den Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ActionNode id=\"14\" />\r\n          <SequenceNode
+    id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <PrioritySelectorNode id=\"25\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"1136.389 515.4716\" name=\"Priority Selector\"
+    selected=\"False\" position=\"565.139 -98.27838\" name=\"Priority Selector\"
     description=\"\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <PrioritySelectorNode id=\"25\" />\r\n          <SequenceNode
     id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </PrioritySelectorNode>\r\n   
     <ConditionEvalNode id=\"30\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"1854.722 1564.362\" name=\"MyConditions/IsBossLow\"
+    selected=\"False\" position=\"1283.472 950.6121\" name=\"MyConditions/IsBossLow\"
     description=\"Eval\" cardinality=\"1\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ConditionEvalNode id=\"30\" />\r\n          <PrioritySelectorNode
     id=\"25\" />\r\n        </data>\r\n      </_data>\r\n    </ConditionEvalNode>\r\n   
     <RandomSelectorNode id=\"29\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
-    selected=\"False\" position=\"918.0559 715.4722\" name=\"Random Selector\" description=\"Selects
+    selected=\"False\" position=\"346.8059 101.7222\" name=\"Random Selector\" description=\"Selects
     randomly one of its children\" cardinality=\"-1\" hasParent=\"False\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <RandomSelectorNode id=\"29\" />\r\n       
     </data>\r\n      </_data>\r\n    </RandomSelectorNode>\r\n    <ConditionEvalNode
     id=\"40\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"2934.167 1622.693\" name=\"AlwaysTrue\" description=\"Eval\" cardinality=\"1\"
+    position=\"2362.917 1008.943\" name=\"AlwaysTrue\" description=\"Eval\" cardinality=\"1\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ConditionEvalNode
     id=\"40\" />\r\n          <PrioritySelectorNode id=\"25\" />\r\n        </data>\r\n     
     </_data>\r\n    </ConditionEvalNode>\r\n    <SequenceNode id=\"39\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1689.723
-    730.4725\" name=\"Sequence\" description=\"Executes all its children in sequence
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1118.473
+    116.7225\" name=\"Sequence\" description=\"Executes all its children in sequence
     until all of them are successful\" cardinality=\"-1\" hasParent=\"False\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"39\" />\r\n       
     </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <SequenceNode id=\"32\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"793.7219
-    928.1376\" name=\"Sequence\" description=\"Executes all its children in sequence
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"222.4719
+    314.3876\" name=\"Sequence\" description=\"Executes all its children in sequence
     until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"32\" />\r\n         
     <RandomSelectorNode id=\"29\" />\r\n        </data>\r\n      </_data>\r\n   
     </SequenceNode>\r\n    <SequenceNode id=\"35\">\r\n      <_data>\r\n        <data
-    breakpoint=\"0\" selected=\"False\" position=\"1343.055 952.1395\" name=\"Sequence\"
+    breakpoint=\"0\" selected=\"False\" position=\"771.8051 338.3895\" name=\"Sequence\"
     description=\"Executes all its children in sequence until all of them are successful\"
     cardinality=\"-1\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
     <SequenceNode id=\"35\" />\r\n          <RandomSelectorNode id=\"29\" />\r\n       
     </data>\r\n      </_data>\r\n    </SequenceNode>\r\n    <ActionNode id=\"41\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1704.246
-    1130.948\" name=\"MyActions/Attack1\" description=\"F\xFChrt die erste Attacke
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"1132.996
+    517.198\" name=\"MyActions/Attack1\" description=\"F\xFChrt die erste Attacke
     vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"41\" />\r\n          <SequenceNode
     id=\"39\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"42\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"1927.817 1135.234\" name=\"MyActions/Taunt\" description=\"Der Boss
+    position=\"1356.567 521.484\" name=\"MyActions/Taunt\" description=\"Der Boss
     Taunted bevor er einen starken Angriff macht\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"42\" />\r\n         
     <SequenceNode id=\"39\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"44\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"2184.721 1153.092\" name=\"MyActions/Attack2\" description=\"F\xFChrt
+    position=\"1613.471 539.342\" name=\"MyActions/Attack2\" description=\"F\xFChrt
     die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"44\" />\r\n         
     <SequenceNode id=\"39\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"28\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"497.7219 1151.805\" name=\"MyActions/RunAway\" description=\"F\xFChrt
+    position=\"-73.52811 538.0551\" name=\"MyActions/RunAway\" description=\"F\xFChrt
     die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"28\" />\r\n         
     <SequenceNode id=\"32\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
-    <ActionNode id=\"33\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"777.0539 1154.806\" name=\"MyActions/SelfHeal\" description=\"F\xFChrt
+    <ActionNode id=\"33\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    position=\"205.8039 541.056\" name=\"MyActions/SelfHeal\" description=\"F\xFChrt
     die erste Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"33\" />\r\n         
     <SequenceNode id=\"32\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"38\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"1019.722 1151.806\" name=\"MyActions/Attack3\" description=\"F\xFChrt
+    position=\"448.472 538.056\" name=\"MyActions/Attack3\" description=\"F\xFChrt
     die dritte Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"38\" />\r\n         
     <SequenceNode id=\"32\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"36\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"1206.388 1162.139\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt
+    position=\"635.1379 548.389\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt
     den Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"36\" />\r\n          <SequenceNode
     id=\"35\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n   
     <ActionNode id=\"37\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
-    position=\"1561.806 1164.222\" name=\"MyActions/Attack3\" description=\"F\xFChrt
+    position=\"990.556 550.472\" name=\"MyActions/Attack3\" description=\"F\xFChrt
     die dritte Attacke vom Boss aus\" cardinality=\"0\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <ActionNode id=\"37\" />\r\n         
     <SequenceNode id=\"35\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n 
