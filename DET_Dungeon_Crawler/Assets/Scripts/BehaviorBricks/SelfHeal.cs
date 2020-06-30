@@ -15,19 +15,25 @@
     [Help("The gameObject that will be moved, in this case the boss")]
     public GameObject gameObject;
 
-    [InParam("hp")]
     [Help("hp of the boss")]
-    public int hp;
+    private int hp;
     private bool m_heal;
+    private float timeVal = 0;
 
 
-        public override void OnStart()
+    public override void OnStart()
     {
         m_heal = true;
+        hp=gameObject.GetComponent<Boss>().hp;
     }
     private void heal()
     {
-        hp = hp + 10;
+        if (timeVal < 6f)
+        {
+            hp = hp + 100;
+            timeVal += Time.deltaTime;
+        }
+        
         m_heal = false;
     }
     // Main class method, invoked by the execution engine.
@@ -41,7 +47,7 @@
         {
             heal();
         }
-        return TaskStatus.RUNNING;
+        return TaskStatus.COMPLETED;
     } // OnUpdate
  
     } // class SelfHeal
