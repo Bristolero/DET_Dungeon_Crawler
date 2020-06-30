@@ -14,16 +14,23 @@ public class Taunt : BasePrimitiveAction
     private float maxTime = 1.5f;
     private Animator m_Animator;
     private bool m_Taunt;
+    private Transform target;
+    private Vector3 bossEulerAngles;
+    private Transform boss;
+
+    private float h;
     
     [InParam("GameObject")]
     [Help("The gameObject that will be moved, in this case the boss")]
     public GameObject gameObject;
-
+   
     public override void OnStart()
     {
           Debug.Log("Taunt startet");
+          boss = gameObject.transform;
           m_Animator = gameObject.GetComponent<Animator>();
           m_Taunt = false;
+          target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
 	}
 
     private void Taunting()
@@ -33,6 +40,29 @@ public class Taunt : BasePrimitiveAction
         {
             m_Animator.SetTrigger("Taunt");
 	    }
+        if(target.position.x > boss.position.x)
+        {
+            h = 1;
+		}
+        else if(target.position.x < boss.position.x)
+        {
+            h = -1;
+		}
+        else
+        {
+                h = 0;
+	    }        
+        if (h <= 0)
+        {
+            boss.eulerAngles = new Vector3(0, 180, 0);
+            bossEulerAngles = new Vector3(0, 0, 0);
+        }
+        //wenn der Boss sich nach rechts bewegt, sein Kopf bleibt nach rechts 
+        if (h > 0)
+        {
+            boss.eulerAngles = new Vector3(0, 0, 0);
+            bossEulerAngles = new Vector3(0, 0, 0);
+        }
 	}
 
     // Main class method, invoked by the execution engine.
