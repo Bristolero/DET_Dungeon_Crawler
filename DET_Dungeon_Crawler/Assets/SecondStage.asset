@@ -153,7 +153,7 @@ MonoBehaviour:
     one of its children\" cardinality=\"-1\" hasParent=\"False\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <RandomSelectorNode id=\"15\" />\r\n        </data>\r\n     
     </_data>\r\n    </RandomSelectorNode>\r\n    <ConditionEvalNode id=\"16\">\r\n     
-    <_data>\r\n        <data breakpoint=\"0\" selected=\"True\" position=\"429.75
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"429.75
     424.75\" name=\"MyConditions/IsBossLow\" description=\"Eval\" cardinality=\"1\"
     hasParent=\"True\">\r\n          <BehaviorTree id=\"8\" />\r\n          <ConditionEvalNode
     id=\"16\" />\r\n          <PrioritySelectorNode id=\"8\" />\r\n        </data>\r\n     
