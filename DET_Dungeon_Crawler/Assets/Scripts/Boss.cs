@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
 {
 
     public int hp;
-    public Slider hpSlider;
+    //public Slider hpSlider;
 
     public bool isLow { get; private set; }
 
@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour
 		}
         m_Animator.ResetTrigger("Attacked1");
 
-        hpSlider.value = (float)hp / hpTotal;
+        //hpSlider.value = (float)hp / hpTotal;
 
 
     }
@@ -46,7 +46,7 @@ public class Boss : MonoBehaviour
         if (hp <= 0) return;       
         hp -= damage;
 
-        hpSlider.value = (float)hp / hpTotal;
+        //hpSlider.value = (float)hp / hpTotal;
 
         if (hp <= 0)
         {
