@@ -21,14 +21,11 @@ public class HPManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        hpPosition= boss.transform.Find("hpPos");
+        //hpSlider.direction = Slider.Direction.RightToLeft;
+        hpPosition = boss.transform.Find("hpPos");
         hpSlider.transform.position = hpPosition.position;
         hpTotal = boss.GetComponent<Boss>().hpTotal;
         hp = boss.GetComponent<Boss>().hp;
-        print(hp);
-        print("total"+hpTotal);
         hpSlider.value = (float)hp / hpTotal;
-
     }
 }
