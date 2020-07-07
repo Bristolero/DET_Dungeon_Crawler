@@ -21,6 +21,8 @@
     private float timeVal = 0;
     private int hpTotal;
 
+    private Animator m_Animator;
+
 
     public override void OnStart()
     {
@@ -28,6 +30,7 @@
         m_heal = true;
         hp = gameObject.GetComponent<Boss>().hp;
         hpTotal = gameObject.GetComponent<Boss>().hpTotal;
+        m_Animator = gameObject.GetComponent<Animator>();
 
     }
     private void heal()
@@ -64,10 +67,12 @@
         }
         if (m_heal == true)
         {
+            m_Animator.SetTrigger("Taunt");
             heal();
         }
         if(m_heal == false)
         {
+            m_Animator.ResetTrigger("Taunt");
             return TaskStatus.COMPLETED;
         }
         return TaskStatus.RUNNING;

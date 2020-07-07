@@ -26,6 +26,7 @@ public class RunAway2 : BasePrimitiveAction
     private Vector3 bossEulerAngles;
     private float timer = 0;
     private float finalTimer = 2f;
+    private float wallDistance = 0.2f;
 
     private Vector2 movement;
 
@@ -33,6 +34,7 @@ public class RunAway2 : BasePrimitiveAction
     private Animator m_Animator;
     private bool m_Move;
 
+    private GameObject[] walls;
 
     public override void OnStart()
     {
@@ -42,9 +44,13 @@ public class RunAway2 : BasePrimitiveAction
         rb = gameObject.GetComponent<Rigidbody2D>();
         m_Animator = gameObject.GetComponent<Animator>();
         m_Move = false;
+        walls = GameObject.FindGameObjectsWithTag("Wall");
 	}
 
     private void Leave() {	    
+        
+        
+
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
         boss = gameObject.transform;
         m_Move = true;
@@ -78,11 +84,29 @@ public class RunAway2 : BasePrimitiveAction
             bossEulerAngles = new Vector3(0, 0, 0);
         }
 
+        if(FindWalls())
+        {
+            return;  
+		}
+
     }
 
     private void Stop() {
         rb.velocity = new Vector3(0, 0);
         m_Move = false;
+	}
+
+    private bool FindWalls() 
+    {
+        foreach(GameObject w in walls)
+        {
+              if(Vector3.Distance(w.transform.position, gameObject.transform.position) < wallDistance)
+              {
+                   Stop();
+                   return true;
+              }
+		}
+        return true;
 	}
 
     public void Update()

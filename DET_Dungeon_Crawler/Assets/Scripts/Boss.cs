@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
 {
 
     public int hp;
-    public Slider hpSlider;
+    //public Slider hpSlider;
 
     public bool isLow;  
     public int hpTotal;
@@ -22,7 +22,7 @@ public class Boss : MonoBehaviour
     {
         hpTotal = hp;
         m_Animator = GetComponent<Animator>();
-        hpSlider = GetComponent<Slider>();
+        //hpSlider = GetComponent<Slider>();
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class Boss : MonoBehaviour
             timer = timer + Time.deltaTime;  
 		}
         m_Animator.ResetTrigger("Attacked1");
-        hpSlider.value = (float)hp / hpTotal;
+        //hpSlider.value = (float)hp / hpTotal;
 
 
     }
@@ -45,7 +45,7 @@ public class Boss : MonoBehaviour
     {
         if (hp <= 0) return;       
         hp -= damage;
-        hpSlider.value = (float)hp / hpTotal;
+        //hpSlider.value = (float)hp / hpTotal;
         if (hp <= 0)
         {
             GameObject.Destroy(this.gameObject);
