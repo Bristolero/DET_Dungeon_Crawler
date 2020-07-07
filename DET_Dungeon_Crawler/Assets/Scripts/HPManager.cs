@@ -21,6 +21,11 @@ public class HPManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(boss==null)
+        {
+            Destroy(hpSlider);
+            return;
+        }
         //hpSlider.direction = Slider.Direction.RightToLeft;
         hpPosition.position = new Vector3(boss.transform.position.x-1.25f, boss.transform.position.y+1.5f, boss.transform.position.z);
         hpSlider.transform.position = hpPosition.position;
