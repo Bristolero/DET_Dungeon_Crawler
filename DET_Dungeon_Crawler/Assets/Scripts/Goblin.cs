@@ -28,10 +28,12 @@ public class Goblin : MonoBehaviour
     {
         gameObject.AddComponent<BoxCollider2D>();  
         rb = GetComponent<Rigidbody2D>();
+        
     }
    
     private void Start()
     {
+        rb.freezeRotation = true;
         attackPos = transform.Find("attackPos");
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();       
         bombPrefab.SetActive(true);

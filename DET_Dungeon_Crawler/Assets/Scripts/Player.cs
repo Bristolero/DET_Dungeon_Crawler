@@ -145,6 +145,12 @@ public class Player : MonoBehaviour
            other.gameObject.SetActive (false);
            Destroy(other);
         }
+        else if(other.name.Contains("Health_Potion"))
+        {
+            hp = hp + 10;
+            other.gameObject.SetActive (false);
+            Destroy(other);  
+		}
         else if(other.tag == "Exit")
         {
             if(hasKey == true) SceneManager.LoadScene(nextSceneToLoad);  
