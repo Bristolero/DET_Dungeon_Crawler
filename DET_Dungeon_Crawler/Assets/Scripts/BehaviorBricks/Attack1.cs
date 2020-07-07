@@ -43,6 +43,8 @@
     public void Attack()
     {
         GameObject newBossSlash = GameObject.Instantiate(bossSlash1, attack1Point.position, attack1Point.rotation) as GameObject;
+        newBossSlash.name = "BossSlash";
+
         setLayerToDefault(newBossSlash);
     }
 
