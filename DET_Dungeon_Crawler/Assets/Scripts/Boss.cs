@@ -22,6 +22,7 @@ public class Boss : MonoBehaviour
     {
         hpTotal = hp;
         m_Animator = GetComponent<Animator>();
+        hpSlider = GetComponent<Slider>();
     }
 
     // Update is called once per frame

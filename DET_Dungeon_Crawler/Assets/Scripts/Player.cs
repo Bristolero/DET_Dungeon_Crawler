@@ -41,7 +41,9 @@ public class Player : MonoBehaviour
         bombPrefab.SetActive(true);
         hp = 100;
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-        cam = GameObject.Find("Camera").GetComponent<Camera>();
+        if(SceneManager.GetActiveScene().buildIndex == 1) {
+            cam = GameObject.Find("Camera").GetComponent<Camera>();
+        }
     }
 
     // Update is called once per frame
@@ -52,8 +54,9 @@ public class Player : MonoBehaviour
                 swordAttack();
             
                 bombAttack();
-        
-        CameraFollow();
+        if(SceneManager.GetActiveScene().buildIndex == 1) {
+            CameraFollow();
+        }
     }
     void FixedUpdate()
     {
