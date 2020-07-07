@@ -93,14 +93,14 @@ public class MoveToPlayer : BasePrimitiveAction
 
     // Main class method, invoked by the execution engine.
     public override TaskStatus OnUpdate()
-    {     
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
-        boss = gameObject.transform;
-        //Debug.Log(Vector3.Distance(target.position, boss.position));
-        if(gameObject == null)
+    {
+        if (gameObject == null)
         {
             return TaskStatus.FAILED;
-		}
+        }
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
+        boss = gameObject.transform;
+        //Debug.Log(Vector3.Distance(target.position, boss.position));     
         if (Vector3.Distance(target.position, boss.position) > distance){
             if (m_Move == true) {
                 m_Animator.SetTrigger("Move");  
