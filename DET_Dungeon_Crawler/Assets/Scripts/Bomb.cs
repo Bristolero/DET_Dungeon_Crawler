@@ -35,6 +35,7 @@ public class Bomb : MonoBehaviour
         GameObject ex = GameObject.Instantiate(bombExplosionPrefab, transform.position, transform.rotation) as GameObject; //1
         if (this.name == "MonsterBomb") { ex.name = "MonsterExplosion"; }
         if (this.name == "PlayerBomb") { ex.name = "PlayerExplosion"; }
+        FindObjectOfType<AudioManager>().Play("Explosion");
         Destroy(ex, 0.3f); //4
     }
    

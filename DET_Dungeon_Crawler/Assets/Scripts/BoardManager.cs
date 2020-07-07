@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+
+    //Für Splitmethoden
     public int boardRows, boardColumns;
     public int minRoomSize, maxRoomSize;
+
+    //GameObjects
     public GameObject[] tile;
     public GameObject wall;
     public GameObject corridorTile;
@@ -17,8 +21,13 @@ public class BoardManager : MonoBehaviour
     public GameObject torch;
     public double spawnProhabilityEnemies;
     public double spawnProhabilityItems;
+
+    //Für Random Tile Spawn
     private GameObject[,] positionFloor;
     private System.Random rnd = new System.Random();
+
+    
+
    
 
   public class Tree {
@@ -566,6 +575,8 @@ public class BoardManager : MonoBehaviour
         return tile[tmp];
 	}
   }
+
+  
   
 
   //init
@@ -587,7 +598,10 @@ public class BoardManager : MonoBehaviour
     //SpawnTorches(root);
     }
         
-  }
+        
+
+    
+}
 
 
 

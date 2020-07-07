@@ -25,6 +25,12 @@ public class Player : MonoBehaviour
     //Momentaner Index für die Anzahl an Scenen 
     private int nextSceneToLoad;
 
+    //Für Kamera
+    //Für Camera
+    private Transform playerTransform;
+    public float offset;
+    private Camera cam;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +41,7 @@ public class Player : MonoBehaviour
         bombPrefab.SetActive(true);
         hp = 100;
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-
+        cam = GameObject.Find("Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -47,7 +53,7 @@ public class Player : MonoBehaviour
             
                 bombAttack();
         
-
+        CameraFollow();
     }
     void FixedUpdate()
     {
@@ -65,6 +71,7 @@ public class Player : MonoBehaviour
             GameObject slash = Instantiate(swordPrefab, attackPosition.position, Quaternion.Euler(transform.eulerAngles + attackEulerAngles));
             slash.name = "PlayerSlash";
             slash.AddComponent<Slash>();
+            FindObjectOfType<AudioManager>().Play("PlayerAttack");
           }
     }
 
@@ -166,4 +173,21 @@ public class Player : MonoBehaviour
         Instantiate(disappearPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
+    public void CameraFollow()
+    {
+        playerTransform = transform;
+        Vector3 temp = cam.transform.position;
+        temp.x = playerTransform.position.x;
+        temp.y = playerTransform.position.y;
+
+        temp.y += offset;
+
+        temp.x += offset;
+
+        cam.transform.position = temp;
+    
+    }
+
+
 }

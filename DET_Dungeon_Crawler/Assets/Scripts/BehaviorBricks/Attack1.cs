@@ -26,6 +26,8 @@
         [InParam("bossSlash1")]
         public GameObject bossSlash1;
 
+       // private AudioManager audioM;
+
     public override void OnStart()
     {
         Debug.Log("Attack1 startet");
@@ -33,6 +35,8 @@
         m_Animator = gameObject.GetComponent<Animator>();
         m_Attack1 = true;
         m_Animator.SetTrigger("Attack1");
+       // audioM = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();   
+       // audioM.Play("BossAttack");
     }
 
 
