@@ -117,14 +117,14 @@ public class RunAway : BasePrimitiveAction
         {
             if (m_Run== true)
             {
-                m_Animator.SetBool("isMoving", true);
+                m_Animator.SetTrigger("Move");
             }
             Chase();
         }
         else
         {
             Stop();
-            m_Animator.SetBool("isMoving", false);
+            m_Animator.ResetTrigger("Move");
             Debug.Log("RunAway beendet");
             return TaskStatus.COMPLETED;
         }
