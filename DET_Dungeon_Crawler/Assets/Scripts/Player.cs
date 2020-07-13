@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public GameObject disappearPrefab;
     public float bombSpeed = 3f;
     public int hp;
+    public int hptotal;
     //Die Position von attack ist vorne von dem player
     private Transform attackPosition;
 
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         swordPrefab.SetActive(true);
         bombPrefab.SetActive(true);
         hp = 100;
+        hptotal = hp;
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
         if(SceneManager.GetActiveScene().buildIndex == 1) {
             cam = GameObject.Find("Camera").GetComponent<Camera>();
