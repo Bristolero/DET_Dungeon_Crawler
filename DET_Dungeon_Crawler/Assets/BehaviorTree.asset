@@ -144,7 +144,7 @@ MonoBehaviour:
     until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
     <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"6\" />\r\n         
     <RepeatDecorator id=\"11\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
-    <ActionNode id=\"14\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    <ActionNode id=\"14\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
     position=\"376.0245 752.4357\" name=\"MyActions/MoveToPlayer\" description=\"Bewegt
     den Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"14\" />\r\n          <SequenceNode
@@ -178,7 +178,7 @@ MonoBehaviour:
     description=\"Executes all its children in sequence until all of them are successful\"
     cardinality=\"-1\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n         
     <SequenceNode id=\"39\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
-    <ActionNode id=\"52\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    <ActionNode id=\"52\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
     position=\"542.5 1315\" name=\"MyActions/RunAway2\" description=\"Bewegt den
     Boss zum Spieler\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree
     id=\"0\" />\r\n          <ActionNode id=\"52\" />\r\n          <SequenceNode

@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //die Methode swordAttack wird aufgerufen 
 
                 swordAttack();
@@ -165,6 +166,7 @@ public class Player : MonoBehaviour
             if (hp <= 0)
             {
                 hp = 0;
+                SceneManager.LoadScene(3);
                 Die();
             }
             else
@@ -180,7 +182,9 @@ public class Player : MonoBehaviour
     {
         //disappeareffect
         Instantiate(disappearPrefab, transform.position, transform.rotation);
+        SceneManager.LoadScene(3);
         Destroy(gameObject);
+
     }
 
     public void CameraFollow()

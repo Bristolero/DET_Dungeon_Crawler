@@ -68,10 +68,12 @@ public class Priest : MonoBehaviour
 			}
             timer = timer - waitTime;          
 		}
-        if(Vector3.Distance(target.position,transform.position) > minRange) 
-        {
-            directionChanger(); 
-		}
+        if(target != null) {
+            if(Vector3.Distance(target.position,transform.position) > minRange) 
+            {
+                directionChanger(); 
+		    }
+        }
     }
 
     void FixedUpdate()

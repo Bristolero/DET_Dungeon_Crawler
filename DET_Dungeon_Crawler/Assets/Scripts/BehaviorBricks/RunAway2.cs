@@ -26,7 +26,7 @@ public class RunAway2 : BasePrimitiveAction
     private Vector3 bossEulerAngles;
     private float timer = 0;
     private float finalTimer = 2f;
-    private float wallDistance = 0.2f;
+    private float wallDistance = 2f;
 
     private Vector2 movement;
 
@@ -49,7 +49,10 @@ public class RunAway2 : BasePrimitiveAction
 
     private void Leave() {	    
         
-        
+        if(FindWalls())
+        {
+            return;  
+		}
 
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); 
         boss = gameObject.transform;
@@ -84,15 +87,12 @@ public class RunAway2 : BasePrimitiveAction
             bossEulerAngles = new Vector3(0, 0, 0);
         }
 
-        if(FindWalls())
-        {
-            return;  
-		}
+        
 
     }
 
     private void Stop() {
-        rb.velocity = new Vector3(0, 0);
+        rb.velocity = new Vector3(0, 0, 0);
         m_Move = false;
 	}
 
@@ -106,7 +106,7 @@ public class RunAway2 : BasePrimitiveAction
                    return true;
               }
 		}
-        return true;
+        return false;
 	}
 
     public void Update()

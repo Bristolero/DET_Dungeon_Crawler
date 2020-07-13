@@ -43,14 +43,16 @@ public class Goblin : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(Vector3.Distance(target.position,transform.position) < minRange && Vector3.Distance(target.position,transform.position) >= minRange - 1)
+        if(target!=null) 
         {
-            if(timer > waitTime) 
+            if(Vector3.Distance(target.position,transform.position) < minRange && Vector3.Distance(target.position,transform.position) >= minRange - 1)
             {
-                ThrowBomb();
-                timer = timer - waitTime;
-			}
-            
+                if(timer > waitTime) 
+                {
+                    ThrowBomb();
+                    timer = timer - waitTime;
+			    }
+            }
 		}
 	}
 
