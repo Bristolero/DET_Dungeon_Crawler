@@ -19,7 +19,7 @@ Ein Dungeon-Crawl ist eine Art Szenario in Fantasy-Rollenspielen, in dem Helden 
 ![](https://i.imgur.com/F6M3Xvw.jpg)
 
 #### Behavior Trees
-![Uploading file..._bk3fn4zjm]()
+
 
 
 # Software
